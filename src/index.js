@@ -41,12 +41,15 @@ const projects = [
   },
 ];
 
+const ProjectList = () => <ul>
+  {
+    projects.map(p => <li key={p.name}>
+      <a href={p.url}>{p.name}</a>
+    </li>)
+  }
+</ul>
+
+
 inactiveProjectsReactRoot.render(
-  React.createElement("ul", {
-    children: projects.map((p) =>
-      React.createElement("li", {
-        children: React.createElement("a", { href: p.url, children: p.name }),
-      })
-    ),
-  })
+  <ProjectList />
 );
