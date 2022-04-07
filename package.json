@@ -1,0 +1,33 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Sean Becker's personal website",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanbecker15/personal-website.git"
+  },
+  "keywords": [
+    "Personal",
+    "Website"
+  ],
+  "author": "Sean Becker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seanbecker15/personal-website/issues"
+  },
+  "homepage": "https://github.com/seanbecker15/personal-website#readme",
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "prettier": "2.6.2"
+  }
+}

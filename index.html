@@ -1,18 +1,26 @@
 <html>
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDR6SSGG4N"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BDR6SSGG4N"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'G-BDR6SSGG4N');
+      gtag("config", "G-BDR6SSGG4N");
     </script>
     <title>Sean Becker</title>
-    <meta name="description" content="Welcome to the personal website of Sean Becker, Frontend Software Engineer at Fubo Gaming. Check out some of the things that Sean is working on!">
+    <meta
+      name="description"
+      content="Welcome to the personal website of Sean Becker, Frontend Software Engineer at Fubo Gaming. Check out some of the things that Sean is working on!"
+    />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href="https://seanbecker.me/" />
   </head>
   <body>
@@ -24,51 +32,43 @@
         margin: 0;
       }
     </style>
-    <div style="display: inline-block;">
+    <div style="display: inline-block">
       <h1>Sean Becker</h1>
       <img id="profile" src="./img/profile.jpg" style="width: 100%" />
     </div>
     <h2 title="Projects I am currently working on.">Projects (active)</h2>
     <ul>
-      <li>All of my current projects are private at the moment. Stay tuned for updates!</li>
-    </ul>
-    <h2 title="I'm not currently working on these projects.">Projects (inactive)</h2>
-    <ul>
       <li>
-        <a href="https://webapps1.chicago.gov/chicagohouseshare/">House Share Registration Portal - BACP Chicago</a>
-      </li>
-      <li>
-        <a href="./projects/caseincident.html">CASE Records Management System - Chicago Police Department</a>
-      </li>
-      <li>
-        <a href="./projects/automatedcallform.html">ACF Election Software - Cook County</a>
-      </li>
-      <li>
-        <a href="./projects/buzz.html">Drink Please (formerly bzzer.io)</a>
-      </li>
-      <li>
-        <a href="https://sumospinnerv2.herokuapp.com/" target="_blank">Sumo Spinner</a>
-      </li>
-      <li>
-        <a href="./projects/lateplateme.html">Lateplateme - Tool for requesting food on the go</a>
-      </li>
-      <li>
-        <a href="https://github.com/seanbecker15/we-eat">We Eat - Yelp alternative built during Purdue CS 307</a>
-      </li>
-      <li>
-        <a href="https://github.com/seanbecker15/cspan-scraper">Purdue University CSPAN Research</a>
+        All of my current projects are private at the moment. Stay tuned for
+        updates!
       </li>
     </ul>
-    
+    <h2 title="I'm not currently working on these projects.">
+      Projects (inactive)
+    </h2>
+    <div id="inactive-projects-container"></div>
     <div>
       <h3>Useful Links</h3>
       <div>
-        <a href="./docs/resume.pdf">Resume</a> &middot; <a href="https://github.com/seanbecker15">GitHub</a> &middot; <a href="https://linkedin.com/in/seanmbecker">LinkedIn</a> &middot; <a href="https://twitter.com/_seanbecker">Twitter</a>
+        <a href="./docs/resume.pdf">Resume</a> &middot;
+        <a href="https://github.com/seanbecker15">GitHub</a> &middot;
+        <a href="https://linkedin.com/in/seanmbecker">LinkedIn</a> &middot;
+        <a href="https://twitter.com/_seanbecker">Twitter</a>
       </div>
     </div>
     <br />
     <div>
-      <small>Last edited 4/1/2022</small>
+      <small>Last edited 4/6/2022</small>
     </div>
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>
