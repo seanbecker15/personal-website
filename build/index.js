@@ -4,50 +4,109 @@ var createRootById = function createRootById(id) {
   return root;
 };
 
-var inactiveProjectsReactRoot = createRootById("inactive-projects-container");
-
 var projects = [{
+  url: "./projects/learning.html",
+  title: "Current topics that I am learning about...",
+  active: true,
+  external: false
+}, {
   url: "https://webapps1.chicago.gov/chicagohouseshare/",
-  name: "House Share Registration Portal - BACP Chicago"
+  title: "House Share Registration Portal - BACP Chicago",
+  active: false,
+  external: true
 }, {
   url: "./projects/caseincident.html",
-  name: "CASE Records Management System - Chicago Police Department"
+  title: "CASE Records Management System - Chicago Police Department",
+  active: false,
+  external: false
 }, {
   url: "./projects/automatedcallform.html",
-  name: "ACF Election Software - Cook County"
+  title: "ACF Election Software - Cook County",
+  active: false,
+  external: false
 }, {
   url: "./projects/buzz.html",
-  name: "Drink Please (formerly bzzer.io)"
+  title: "Drink Please (formerly bzzer.io)",
+  active: false,
+  external: false
 }, {
   url: "https://sumospinnerv2.herokuapp.com/",
-  name: "Sumo Spinner"
+  title: "Sumo Spinner",
+  active: false,
+  external: true
 }, {
   url: "./projects/lateplateme.html",
-  name: "Lateplateme - Tool for requesting food on the go"
+  title: "Lateplateme - Tool for requesting food on the go",
+  active: false,
+  external: false
 }, {
   url: "https://github.com/seanbecker15/we-eat",
-  name: "We Eat - Yelp alternative built during Purdue CS 307"
+  title: "We Eat - Yelp alternative built during Purdue CS 307",
+  active: false,
+  external: true
 }, {
   url: "https://github.com/seanbecker15/cspan-scraper",
-  name: "Purdue University CSPAN Research"
+  title: "Purdue University CSPAN Research",
+  active: false,
+  external: true
 }];
 
-var ProjectList = function ProjectList() {
+var Anchor = function Anchor(_ref) {
+  var to = _ref.to,
+      isExternal = _ref.isExternal,
+      children = _ref.children;
+  return React.createElement(
+    "a",
+    {
+      href: to,
+      target: isExternal ? "__blank" : undefined,
+      referrer: isExternal ? "noreferrer" : undefined
+    },
+    children
+  );
+};
+
+var Text = function Text(_ref2) {
+  var children = _ref2.children;
+  return React.createElement(
+    "div",
+    null,
+    children
+  );
+};
+
+var ProjectList = function ProjectList(_ref3) {
+  var filter = _ref3.filter;
   return React.createElement(
     "ul",
     null,
-    projects.map(function (p) {
+    projects.filter(filter).map(function (_ref4) {
+      var title = _ref4.title,
+          url = _ref4.url,
+          external = _ref4.external;
       return React.createElement(
         "li",
-        { key: p.name },
-        React.createElement(
-          "a",
-          { href: p.url },
-          p.name
+        { key: title },
+        url ? React.createElement(
+          Anchor,
+          { to: url, isExternal: external },
+          title
+        ) : React.createElement(
+          Text,
+          null,
+          title
         )
       );
     })
   );
 };
 
-inactiveProjectsReactRoot.render(React.createElement(ProjectList, null));
+createRootById("active-projects-container").render(React.createElement(ProjectList, { filter: function filter(_ref5) {
+    var active = _ref5.active;
+    return Boolean(active);
+  } }));
+
+createRootById("inactive-projects-container").render(React.createElement(ProjectList, { filter: function filter(_ref6) {
+    var active = _ref6.active;
+    return !active;
+  } }));

@@ -4,52 +4,95 @@ const createRootById = (id) => {
   return root;
 };
 
-const inactiveProjectsReactRoot = createRootById("inactive-projects-container");
-
 const projects = [
   {
+    url: "./projects/learning.html",
+    title: "Current topics that I am learning about...",
+    active: true,
+    external: false,
+  },
+  {
     url: "https://webapps1.chicago.gov/chicagohouseshare/",
-    name: "House Share Registration Portal - BACP Chicago"
+    title: "House Share Registration Portal - BACP Chicago",
+    active: false,
+    external: true,
   },
   {
     url: "./projects/caseincident.html",
-    name: "CASE Records Management System - Chicago Police Department"
+    title: "CASE Records Management System - Chicago Police Department",
+    active: false,
+    external: false,
   },
   {
     url: "./projects/automatedcallform.html",
-    name: "ACF Election Software - Cook County"
+    title: "ACF Election Software - Cook County",
+    active: false,
+    external: false,
   },
   {
     url: "./projects/buzz.html",
-    name: "Drink Please (formerly bzzer.io)"
+    title: "Drink Please (formerly bzzer.io)",
+    active: false,
+    external: false,
   },
   {
     url: "https://sumospinnerv2.herokuapp.com/",
-    name: "Sumo Spinner"
+    title: "Sumo Spinner",
+    active: false,
+    external: true,
   },
   {
     url: "./projects/lateplateme.html",
-    name: "Lateplateme - Tool for requesting food on the go"
+    title: "Lateplateme - Tool for requesting food on the go",
+    active: false,
+    external: false,
   },
   {
     url: "https://github.com/seanbecker15/we-eat",
-    name: "We Eat - Yelp alternative built during Purdue CS 307"
+    title: "We Eat - Yelp alternative built during Purdue CS 307",
+    active: false,
+    external: true,
   },
   {
     url: "https://github.com/seanbecker15/cspan-scraper",
-    name: "Purdue University CSPAN Research"
+    title: "Purdue University CSPAN Research",
+    active: false,
+    external: true,
   },
 ];
 
-const ProjectList = () => <ul>
-  {
-    projects.map(p => <li key={p.name}>
-      <a href={p.url}>{p.name}</a>
-    </li>)
-  }
-</ul>
+const Anchor = ({ to, isExternal, children }) => (
+  <a
+    href={to}
+    target={isExternal ? "__blank" : undefined}
+    referrer={isExternal ? "noreferrer" : undefined}
+  >
+    {children}
+  </a>
+);
 
+const Text = ({ children }) => <div>{children}</div>;
 
-inactiveProjectsReactRoot.render(
-  <ProjectList />
+const ProjectList = ({ filter }) => (
+  <ul>
+    {projects.filter(filter).map(({ title, url, external }) => (
+      <li key={title}>
+        {url ? (
+          <Anchor to={url} isExternal={external}>
+            {title}
+          </Anchor>
+        ) : (
+          <Text>{title}</Text>
+        )}
+      </li>
+    ))}
+  </ul>
+);
+
+createRootById("active-projects-container").render(
+  <ProjectList filter={({ active }) => Boolean(active)} />
+);
+
+createRootById("inactive-projects-container").render(
+  <ProjectList filter={({ active }) => !active} />
 );
