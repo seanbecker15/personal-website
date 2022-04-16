@@ -65,7 +65,7 @@ const Anchor = ({ to, isExternal, children }) => (
   <a
     href={to}
     target={isExternal ? "__blank" : undefined}
-    referrer={isExternal ? "noreferrer" : undefined}
+    referrerpolicy={isExternal ? "no-referrer" : undefined}
   >
     {children}
   </a>
