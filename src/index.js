@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import ProjectList from "./fragments/ProjectList";
+import App from "./App";
 
 const createRootById = (id) => {
   const element = document.getElementById(id);
@@ -7,10 +7,4 @@ const createRootById = (id) => {
   return root;
 };
 
-createRootById("active-projects-container").render(
-  <ProjectList filter={({ active }) => Boolean(active)} />
-);
-
-createRootById("inactive-projects-container").render(
-  <ProjectList filter={({ active }) => !active} />
-);
+createRootById("root").render(<App />);

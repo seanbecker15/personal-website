@@ -1,11 +1,5 @@
 [
   {
-    "url": "./assets/projects/learning.html",
-    "title": "Current topics that I am learning about...",
-    "active": true,
-    "external": false
-  },
-  {
     "url": "https://webapps1.chicago.gov/chicagohouseshare/",
     "title": "House Share Registration Portal - BACP Chicago",
     "active": false,
