@@ -1,6 +1,8 @@
-import Anchor from "../../components/Anchor";
-import Text from "../../components/Text";
+import { lazy } from "react";
 import projects from "./projects.json";
+
+const Anchor = lazy(() => import("../../components/Anchor"));
+const Text = lazy(() => import("../../components/Text"));
 
 const ProjectList = ({ filter }) => (
   <ul>
