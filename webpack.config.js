@@ -6,7 +6,13 @@ module.exports = {
   entry: {
     index: "./src/index.js",
   },
-  resolve: { extensions: [".js", ".jsx"] },
+  resolve: {
+    extensions: [".js", ".jsx"],
+    alias: {
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@ui": path.resolve(__dirname, "src/ui"),
+    },
+  },
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
