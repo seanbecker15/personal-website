@@ -28,7 +28,8 @@
   "homepage": "https://github.com/seanbecker15/personal-website#readme",
   "dependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.16.7",
