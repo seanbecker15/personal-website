@@ -6,7 +6,7 @@ const createRootById = (id) => {
 
 const projects = [
   {
-    url: "./projects/learning.html",
+    url: "./assets/projects/learning.html",
     title: "Current topics that I am learning about...",
     active: true,
     external: false,
@@ -18,19 +18,19 @@ const projects = [
     external: true,
   },
   {
-    url: "./projects/caseincident.html",
+    url: "./assets/projects/caseincident.html",
     title: "CASE Records Management System - Chicago Police Department",
     active: false,
     external: false,
   },
   {
-    url: "./projects/automatedcallform.html",
+    url: "./assets/projects/automatedcallform.html",
     title: "ACF Election Software - Cook County",
     active: false,
     external: false,
   },
   {
-    url: "./projects/buzz.html",
+    url: "./assets/projects/buzz.html",
     title: "Drink Please (formerly bzzer.io)",
     active: false,
     external: false,
@@ -42,7 +42,7 @@ const projects = [
     external: true,
   },
   {
-    url: "./projects/lateplateme.html",
+    url: "./assets/projects/lateplateme.html",
     title: "Lateplateme - Tool for requesting food on the go",
     active: false,
     external: false,
