@@ -11,6 +11,7 @@ phases:
       - npm run-script build
   post_build:
     commands:
+      - aws s3 sync public s3://seanbeckerme --delete
       - echo Build completed on `date`
 artifacts:
   files:

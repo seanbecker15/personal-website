@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     index: "./src/index.js",
   },
+  resolve: { extensions: [".js", ".jsx"] },
   plugins: [new webpack.ProgressPlugin()],
   output: {
     filename: "[name].bundle.js",
