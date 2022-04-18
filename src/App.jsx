@@ -16,7 +16,7 @@ export default function App() {
             index
             element={
               <Suspense>
-                <Home />
+                <Projects />
               </Suspense>
             }
           />
@@ -25,6 +25,14 @@ export default function App() {
             element={
               <Suspense>
                 <Learning />
+              </Suspense>
+            }
+          />
+          <Route
+            path="projects"
+            element={
+              <Suspense>
+                <Projects />
               </Suspense>
             }
           />
@@ -40,10 +48,10 @@ export default function App() {
               }
             />
             <Route
-              path="projects"
+              path="home"
               element={
                 <Suspense>
-                  <Projects />
+                  <Home />
                 </Suspense>
               }
             />

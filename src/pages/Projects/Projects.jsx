@@ -52,9 +52,10 @@ export default function Projects(): Node {
             <BadgeContainer>
               <ClarityBadge />
               <ConsumerProtectionBadge />
-              <SpringBootBadge />
               <ReactBadge />
+              <ReduxBadge />
               <TypeScriptBadge />
+              <SpringBootBadge />
             </BadgeContainer>
           }
         />
@@ -84,6 +85,7 @@ export default function Projects(): Node {
               <ClarityBadge />
               <CookCountyClerkBadge />
               <ReactBadge />
+              <ReduxBadge />
               <TypeScriptBadge />
               <DotNetCoreBadge />
             </BadgeContainer>
@@ -110,6 +112,7 @@ export default function Projects(): Node {
               <SocketIOBadge />
               <JavaScriptBadge />
               <PurdueBadge />
+              <GithubBadge url="https://github.com/seanbecker15/sumo-spinner" />
             </BadgeContainer>
           }
         />
@@ -132,6 +135,7 @@ export default function Projects(): Node {
           badges={
             <BadgeContainer>
               <PurdueBadge />
+              <GithubBadge url="https://github.com/seanbecker15/marcopolo-backend" />
             </BadgeContainer>
           }
         />
@@ -143,6 +147,7 @@ export default function Projects(): Node {
           badges={
             <BadgeContainer>
               <PurdueBadge />
+              <GithubBadge url="https://github.com/seanbecker15/we-eat" />
             </BadgeContainer>
           }
         />
@@ -153,6 +158,7 @@ export default function Projects(): Node {
           badges={
             <BadgeContainer>
               <PurdueBadge />
+              <GithubBadge url="https://github.com/seanbecker15/media-aggregation-ui" />
             </BadgeContainer>
           }
         />
@@ -173,6 +179,7 @@ export default function Projects(): Node {
           badges={
             <BadgeContainer>
               <AmericanHotelBadge />
+              <GithubBadge url="https://github.com/seanbecker15/outlook-bulk-send" />
             </BadgeContainer>
           }
         />
@@ -241,19 +248,36 @@ function SpringBootBadge() {
 }
 
 function CookCountyClerkBadge() {
-  return <Badge title="Cook County Clerk" />;
+  return (
+    <Badge title="Cook County Clerk" imgSrc="/assets/img/chicago-logo.png" />
+  );
 }
 
 function ConsumerProtectionBadge() {
-  return <Badge title="Bureau of Affairs and Consumer Protection, Chicago" />;
+  return (
+    <Badge
+      title="Bureau of Affairs and Consumer Protection, Chicago"
+      imgSrc="/assets/img/chicago-logo.png"
+    />
+  );
 }
 
 function ChicagoPoliceBadge() {
-  return <Badge title="Chicago Police Department" />;
+  return (
+    <Badge
+      title="Chicago Police Department"
+      imgSrc="/assets/img/chicago-logo.png"
+    />
+  );
 }
 
 function AmericanHotelBadge() {
-  return <Badge title="American Hotel Register" />;
+  return (
+    <Badge
+      title="American Hotel Register"
+      imgSrc="/assets/img/american-hotel-logo.svg"
+    />
+  );
 }
 
 function ClarityBadge() {
