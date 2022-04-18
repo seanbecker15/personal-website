@@ -1,0 +1,32 @@
+.Projects {
+  max-width: 42rem;
+  padding: 54px 18px 18px 18px;
+  margin: auto;
+}
+
+.Projects__photo-of-me {
+  margin-right: 16px;
+  width: 50px;
+  border-radius: 100%;
+  vertical-align: bottom;
+}
+
+.Projects__header {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.Projects__header-text {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.Projects__subheader-text {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 40px;
+}
+
+.Projects__badge-container {
+  display: flex;
+}

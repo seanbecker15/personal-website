@@ -12,7 +12,7 @@ export default function Anchor(props: Props): Node {
   return (
     <a
       href={props.to}
-      target={props.isExternal ? "__blank" : undefined}
+      target={props.isExternal ? "_blank" : undefined}
       referrerPolicy={props.isExternal ? "no-referrer" : undefined}
     >
       {props.children}
