@@ -22,7 +22,7 @@ export default function Projects(): Node {
             Software built by Sean Becker.
           </div>
           <div className="Projects__subheader-text">
-            "I’m an engineer. To save time let’s just assume that I’m never
+            "I'm an engineer. To save time let's just assume that I'm never
             wrong."
           </div>
         </div>
@@ -30,8 +30,24 @@ export default function Projects(): Node {
 
       <div className="Projects__card-container">
         <ProjectCard
+          title="Sportsbook / Streaming Account Integration"
+          entity="Fubo Gaming (fuboTV)"
+          start="July 2021"
+          end="August 2021"
+          badges={
+            <BadgeContainer>
+              <FuboBadge />
+              <ReactBadge />
+              <JavaScriptBadge />
+              <NpmBadge />
+            </BadgeContainer>
+          }
+        />
+        <ProjectCard
           title="Shared Housing Registration Portal"
           entity="Chicago Business Affairs and Consumer Protection (via Clarity Partners)"
+          start="October 2020"
+          end="May 2021"
           badges={
             <BadgeContainer>
               <ClarityBadge />
@@ -59,6 +75,8 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="February 2020"
+          end="December 2020"
           title="Election IT Ticketing Dashboard"
           entity="Cook County Clerk (via Clarity Partners)"
           badges={
@@ -72,6 +90,7 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="One night during the COVID-19 pandemic"
           title="Drink!"
           entity="No Organization"
           badges={
@@ -83,6 +102,7 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="October 2017"
           title="Sumo Spinner"
           entity="Purdue University"
           badges={
@@ -94,6 +114,8 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="December 2017"
+          end="November 2018"
           title="LatePlateMe!"
           entity="Purdue University"
           badges={
@@ -103,6 +125,8 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="January 2019"
+          end="May 2019"
           title="MarcoPolo Backtesting Platform"
           entity="Purdue University"
           badges={
@@ -112,6 +136,8 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="February 2018"
+          end="August 2018"
           title="We Eat"
           entity="Purdue University"
           badges={
@@ -121,6 +147,7 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="April 2018"
           title="Media Explorer Tool"
           entity="Purdue University"
           badges={
@@ -130,6 +157,7 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="August 2016"
           title="MetaCard"
           entity="No Organization"
           badges={
@@ -139,6 +167,7 @@ export default function Projects(): Node {
           }
         />
         <ProjectCard
+          start="July 2016"
           title="Help Desk Survey Tool"
           entity="American Hotel Register Company"
           badges={
@@ -154,25 +183,6 @@ export default function Projects(): Node {
 
 function BadgeContainer(props: { children: Node }): Node {
   return <div className="Projects__badge-container">{props.children}</div>;
-}
-
-function ClarityBadge() {
-  return (
-    <Badge
-      imgSrc="https://www.claritypartners.com/wp-content/themes/clarity/img/clarity-partners-llc-logo.jpg"
-      url="https://www.claritypartners.com/"
-      title="Clarity Partners, LLC (Chicago)"
-    />
-  );
-}
-
-function SpringBootBadge() {
-  return (
-    <Badge
-      imgSrc="https://image.pngaaa.com/500/2459500-middle.png"
-      title="Spring Boot"
-    />
-  );
 }
 
 function ReactBadge() {
@@ -215,6 +225,21 @@ function SocketIOBadge() {
   return <Badge title="Socket.io" />;
 }
 
+function DotNetCoreBadge() {
+  return (
+    <Badge
+      title="Dotnet Core"
+      imgSrc="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg"
+    />
+  );
+}
+
+function SpringBootBadge() {
+  return (
+    <Badge imgSrc="/assets/img/spring-boot-logo.svg" title="Spring Boot" />
+  );
+}
+
 function CookCountyClerkBadge() {
   return <Badge title="Cook County Clerk" />;
 }
@@ -231,11 +256,12 @@ function AmericanHotelBadge() {
   return <Badge title="American Hotel Register" />;
 }
 
-function DotNetCoreBadge() {
+function ClarityBadge() {
   return (
     <Badge
-      title="Dotnet Core"
-      imgSrc="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg"
+      imgSrc="/assets/img/clarity-logo.jpeg"
+      url="https://www.claritypartners.com/"
+      title="Clarity Partners, LLC (Chicago)"
     />
   );
 }
@@ -250,7 +276,9 @@ function PurdueBadge() {
 }
 
 function FuboBadge() {
-  return <Badge title="Fubo Gaming" />;
+  return (
+    <Badge title="Fubo Gaming" imgSrc="/assets/img/fubo-gaming-logo.png" />
+  );
 }
 
 function GithubBadge({ url }: { url: string }) {
@@ -261,4 +289,8 @@ function GithubBadge({ url }: { url: string }) {
       imgSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     />
   );
+}
+
+function NpmBadge() {
+  return <Badge title="npm" imgSrc="/assets/img/npm-logo.svg" />;
 }
