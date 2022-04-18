@@ -6,19 +6,19 @@
     "external": true
   },
   {
-    "url": "./assets/projects/caseincident.html",
+    "url": "",
     "title": "CASE Records Management System - Chicago Police Department",
     "active": false,
     "external": false
   },
   {
-    "url": "./assets/projects/automatedcallform.html",
+    "url": "",
     "title": "ACF Election Software - Cook County",
     "active": false,
     "external": false
   },
   {
-    "url": "./assets/projects/buzz.html",
+    "url": "",
     "title": "Drink Please (formerly bzzer.io)",
     "active": false,
     "external": false
@@ -30,7 +30,7 @@
     "external": true
   },
   {
-    "url": "./assets/projects/lateplateme.html",
+    "url": "",
     "title": "Lateplateme - Tool for requesting food on the go",
     "active": false,
     "external": false
