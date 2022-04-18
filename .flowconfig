@@ -9,5 +9,12 @@
 
 [options]
 react.runtime=automatic
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.jsx
+module.file_ext=.css
+module.file_ext=.scss
+module.name_mapper='^@ui/\(.*\)$' -> '<PROJECT_ROOT>/src/ui/\1'
+module.name_mapper='^@pages/\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'
 
 [strict]
