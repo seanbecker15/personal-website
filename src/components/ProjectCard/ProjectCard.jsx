@@ -10,7 +10,7 @@ type Props = {
   start?: string,
   end?: string,
   internalUrl?: string,
-  description: string,
+  description: Node,
   longDescription: string,
   badges?: Node,
 };

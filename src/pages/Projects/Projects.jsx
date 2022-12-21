@@ -22,13 +22,23 @@ export default function Projects(): Node {
             Software built by Sean Becker.
           </div>
           <div className="Projects__subheader-text">
-            "I'm an engineer. To save time let's just assume that I'm never
-            wrong."
+            I like building stuff, mkay
           </div>
         </div>
       </div>
 
       <div className="Projects__card-container">
+        <ProjectCard
+          title="Confidence Pool Selenium Scraper"
+          entity="Just for fun :)"
+          start="December 2022"
+          end="Ongoing"
+          description={
+            <>
+              <a href="/assets/docs/3gs/2022/week15.csv">Week 15 CSV</a>
+            </>
+          }
+        />
         <ProjectCard
           title="Sportsbook / Streaming Account Integration"
           entity="Fubo Gaming (fuboTV)"
@@ -292,10 +302,7 @@ function ClarityBadge() {
 
 function PurdueBadge() {
   return (
-    <Badge
-      title="Purdue University"
-      imgSrc="https://pbs.twimg.com/profile_images/1384614212274692098/MVrG6l7P_400x400.png"
-    />
+    <Badge title="Purdue University" imgSrc="/assets/img/purdue-logo.png" />
   );
 }
 
