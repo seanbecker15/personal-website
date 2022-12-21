@@ -5,6 +5,7 @@ import type { Node } from "react";
 import ProjectCard from "../../components/ProjectCard";
 import Badge from "@ui/Badge";
 import "./styles.scss";
+import OpmSelector from "../../components/OpmSelector";
 
 export default function Projects(): Node {
   return (
@@ -33,11 +34,7 @@ export default function Projects(): Node {
           entity="Just for fun :)"
           start="December 2022"
           end="Ongoing"
-          description={
-            <>
-              <a href="/assets/docs/3gs/2022/week15.csv">Week 15 CSV</a>
-            </>
-          }
+          description={<OpmSelector />}
         />
         <ProjectCard
           title="Sportsbook / Streaming Account Integration"
