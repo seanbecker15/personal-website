@@ -5,6 +5,7 @@ const Home = lazy(() => import("@pages/Home"));
 const Learning = lazy(() => import("@pages/Learning"));
 const Tasks = lazy(() => import("@pages/Tasks"));
 const Projects = lazy(() => import("@pages/Projects"));
+const Sitemap = lazy(() => import("@pages/Sitemap"));
 
 export default function App() {
   return (
@@ -20,18 +21,26 @@ export default function App() {
             }
           />
           <Route
-            path="/learning"
-            element={
-              <Suspense>
-                <Learning />
-              </Suspense>
-            }
-          />
-          <Route
             path="projects"
             element={
               <Suspense>
                 <Projects />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/sitemap"
+            element={
+              <Suspense>
+                <Sitemap />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/learning"
+            element={
+              <Suspense>
+                <Learning />
               </Suspense>
             }
           />
@@ -40,6 +49,14 @@ export default function App() {
           <Route path="/dev">
             <Route
               index
+              element={
+                <Suspense>
+                  <Sitemap />
+                </Suspense>
+              }
+            />
+            <Route
+              path="tasks"
               element={
                 <Suspense>
                   <Tasks />
