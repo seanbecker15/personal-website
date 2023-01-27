@@ -4,7 +4,6 @@ import { isDevelopment } from "./util/env";
 const Home = lazy(() => import("@pages/Home"));
 const Learning = lazy(() => import("@pages/Learning"));
 const Tasks = lazy(() => import("@pages/Tasks"));
-const Blogs = lazy(() => import("@pages/Blogs"));
 const Projects = lazy(() => import("@pages/Projects"));
 
 export default function App() {
@@ -52,14 +51,6 @@ export default function App() {
               element={
                 <Suspense>
                   <Home />
-                </Suspense>
-              }
-            />
-            <Route
-              path="blogs"
-              element={
-                <Suspense>
-                  <Blogs />
                 </Suspense>
               }
             />
