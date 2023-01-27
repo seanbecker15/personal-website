@@ -49,7 +49,7 @@ export default function Matrix(props: Props): Node {
       ctx.arc(urgencyCoordinate, importanceCoordinate, 5, 0, 2 * Math.PI);
       ctx.fill();
 
-      ctx.font = "10px Comic Sans MS";
+      ctx.font = "10px monospace";
       ctx.fillText(title, urgencyCoordinate + 8, importanceCoordinate + 3);
     });
   }, [props.children, size]);
