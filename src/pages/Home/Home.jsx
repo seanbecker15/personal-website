@@ -12,15 +12,17 @@ export default function Home() {
           style={{ width: "100%" }}
         />
       </div>
-      <h2 title="Projects I am currently working on.">Projects (active)</h2>
+      <h2 title="Projects I am currently working on.">Here's what I've been up to.</h2>
       <ul>
+        <li>Engineer on the SmartTV team at Fubo</li>
+        <li>Learning about AI</li>
         <li>
-          <Link to="/learning">Current topics that I am learning about...</Link>
+          <Link to="/learning">Other things I'm learning about</Link>
         </li>
       </ul>
 
-      <h2 title="I'm not currently working on these projects.">
-        Projects (inactive)
+      <h2 title="I am no longer actively working on these projects.">
+        Archive
       </h2>
       <ProjectList filter={({ active }) => !active} />
       <div>
