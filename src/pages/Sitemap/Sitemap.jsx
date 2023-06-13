@@ -7,7 +7,7 @@ export default function Sitemap() {
   return (
     <div>
       <SitemapItem level={0}>
-        <Anchor to="https://seanbecker.me">seanbecker.me</Anchor>
+        <Anchor to="/">seanbecker.me</Anchor>
       </SitemapItem>
       <SitemapItem level={1}>
         <Link to="/learning">learning topics</Link>

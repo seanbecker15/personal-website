@@ -1,43 +1,51 @@
+// @flow
+
 import { Link } from "react-router-dom";
-import ProjectList from "../../fragments/ProjectList/ProjectList";
+import { Header, ProjectList, Section } from "../../components";
 
-export default function Home() {
+import "./styles.scss";
+import type { Node } from "react";
+import { Anchor, List, ListItem } from "../../ui";
+
+export default function Home(): Node {
   return (
-    <>
-      <div style={{ display: "inline-block" }}>
-        <h1>Sean Becker</h1>
-        <img
-          id="profile"
-          src="/assets/img/profile.jpg"
-          style={{ width: "100%" }}
-        />
-      </div>
-      <h2 title="Projects I am currently working on.">Here's what I've been up to.</h2>
-      <ul>
-        <li>Engineer on the SmartTV team at Fubo</li>
-        <li>Learning about AI</li>
-        <li>
-          <Link to="/learning">Other things I'm learning about</Link>
-        </li>
-      </ul>
+    <div className="Home">
+      <Header heading="Sean Becker" imgUrl="/assets/img/profile.jpg" />
+      <Section heading="What I've been up to...">
+        <List>
+          <ListItem>
+            <Link to="/job">Working on the Smart TV application at Fubo</Link>
+          </ListItem>
+          <ListItem>Experimenting with LLMs</ListItem>
+          <ListItem>
+            <Link to="/learning">Other things I'm learning about</Link>
+          </ListItem>
+        </List>
+      </Section>
+      <Section heading="Archive">
+        <ProjectList filter={({ active }) => !active} />
+      </Section>
+      <Section heading="Contact / Resume / About">
+        <List>
+          <ListItem>
+            <Anchor to="./assets/docs/resume.pdf">Resume</Anchor>
+          </ListItem>
+          <ListItem>
+            <Anchor to="https://github.com/seanbecker15">GitHub</Anchor>
+          </ListItem>
+          <ListItem>
+            <Anchor to="https://linkedin.com/in/seanmbecker">LinkedIn</Anchor>
+          </ListItem>
+          <ListItem>
+            <Anchor to="https://twitter.com/TheSeanBecker">Twitter</Anchor>
+          </ListItem>
+        </List>
+      </Section>
 
-      <h2 title="I am no longer actively working on these projects.">
-        Archive
-      </h2>
-      <ProjectList filter={({ active }) => !active} />
-      <div>
-        <h3>Useful Links</h3>
-        <div>
-          <a href="./assets/docs/resume.pdf">Resume</a> &middot;
-          <a href="https://github.com/seanbecker15">GitHub</a> &middot;
-          <a href="https://linkedin.com/in/seanmbecker">LinkedIn</a> &middot;
-          <a href="https://twitter.com/_seanbecker">Twitter</a>
-        </div>
-      </div>
       <br />
       <div>
-        <small>Last edited 4/6/2022</small>
+        <small>Last edited 6/12/2023</small>
       </div>
-    </>
+    </div>
   );
 }

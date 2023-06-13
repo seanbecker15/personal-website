@@ -1,18 +1,17 @@
 .PageLayout {
-  margin: 20px 12px 12px 12px;
-  min-height: 100%;
-  display: grid;
-  grid-template-areas:
-    "content"
-    "footer";
-  gap: 20px;
-}
+  display: flex;
+  flex-direction: column;
 
-.PageLayout__content {
-  grid-area: content;
+  box-sizing: border-box;
+  padding: 20px 12px 12px 12px;
+  min-height: 100%;
+
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .PageLayout__footer {
-  grid-area: footer;
+  margin-top: auto;
 }
 

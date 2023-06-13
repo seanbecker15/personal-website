@@ -9,12 +9,11 @@ type Props = {
 };
 
 export default function PageLayout(props: Props): Node {
+  const { children, footerContent } = props;
   return (
     <div className="PageLayout">
-      <div className="PageLayout__content">{props.children}</div>
-      <div className="PageLayout__footer">
-        {props.footerContent}
-      </div>
+      <div className="PageLayout__content">{children}</div>
+      <div className="PageLayout__footer">{footerContent}</div>
     </div>
   );
 }
