@@ -2,10 +2,9 @@
 
 import type { Node } from "react";
 
-import ProjectCard from "../../components/ProjectCard";
-import Badge from "@ui/Badge";
+import { OpmSelector, ProjectCard } from "@components";
+import { Badge } from "@ui";
 import "./styles.scss";
-import OpmSelector from "../../components/OpmSelector";
 
 export default function Projects(): Node {
   return (

@@ -1,11 +1,11 @@
 // @flow
 
+import type { Node } from "react";
 import { Link } from "react-router-dom";
-import { Header, ProjectList, Section } from "../../components";
+import { Header, ProjectList, Section } from "@components";
+import { Anchor, List, ListItem } from "@ui";
 
 import "./styles.scss";
-import type { Node } from "react";
-import { Anchor, List, ListItem } from "../../ui";
 
 export default function Home(): Node {
   return (

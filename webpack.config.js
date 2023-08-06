@@ -9,6 +9,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {
+      "@components": path.resolve(__dirname, "src/components"),
       "@pages": path.resolve(__dirname, "src/pages"),
       "@ui": path.resolve(__dirname, "src/ui"),
     },
@@ -25,7 +26,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // when webpack encounters .js or .jsx, use babel loader to load files
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
