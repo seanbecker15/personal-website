@@ -6,6 +6,8 @@ import "./styles.scss";
 export default function Root() {
   return (
     <div className="Root">
+      <h1>Sean Becker</h1>
+
       <Outlet />
 
       <br />

@@ -5,39 +5,40 @@ import AboutMe, { aboutMeLoader } from "./about-me";
 import Archive, { archiveLoader } from "./archive";
 import Home, { homeLoader } from "./home";
 import Error from "./error";
+import routesJSON from './routes.json'
 
 /**
  * @type RouteObject[]
  */
 const routes = [
   {
-    path: "/",
+    path: routesJSON.root.path,
     errorElement: <Error />,
     element: <Root />,
     loader: rootLoader,
     children: [
       {
-        path: '',
+        path: routesJSON.root.path,
         element: <Home />,
         loader: homeLoader,
       },
       {
-        path: "education",
+        path: routesJSON.root.children.education.path,
         element: <Education />,
         loader: educationLoader,
       },
       {
-        path: "experience",
+        path: routesJSON.root.children.experience.path,
         element: <Experience />,
         loader: experienceLoader,
       },
       {
-        path: "about-me",
+        path: routesJSON.root.children["about-me"].path,
         element: <AboutMe />,
         loader: aboutMeLoader,
       },
       {
-        path: 'archive',
+        path: routesJSON.root.children.archive.path,
         element: <Archive />,
         loader: archiveLoader,
       },

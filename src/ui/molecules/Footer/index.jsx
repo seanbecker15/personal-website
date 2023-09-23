@@ -1,7 +1,8 @@
+import { getVersion, getVersionDate } from "@utils";
 import "./styles.scss";
 
 export default function Footer() {
   return <div className="Footer">
-    <small>Last edited 6/12/2023</small>
+    <small>Site last updated {getVersionDate()}{' '}{`(Version ${getVersion()})`}</small>
   </div>;
 }

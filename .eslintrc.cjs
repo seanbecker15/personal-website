@@ -25,6 +25,8 @@ module.exports = {
     },
   },
   globals: {
-    '__DEV__': true
+    '__DEV__': true,
+    '__VERSION__': true,
+    '__VERSION_DATE__': true,
   }
 };

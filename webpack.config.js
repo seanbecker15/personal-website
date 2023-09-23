@@ -2,6 +2,8 @@
 
 const webpack = require("webpack");
 const path = require("path");
+const version = require('./package.json').version;
+const versionDate = require('./package.json').versionDate;
 
 module.exports = {
   mode: "development",
@@ -19,6 +21,8 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
       __DEV__: process.env.NODE_ENV !== "production",
+      __VERSION__: JSON.stringify(version),
+      __VERSION_DATE__: JSON.stringify(versionDate)
     }),
   ],
   output: {

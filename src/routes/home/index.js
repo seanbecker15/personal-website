@@ -7,7 +7,7 @@ import "./styles.scss";
 export default function Home() {
   return (
     <div className="Home">
-      <Header heading="Sean Becker" imgUrl="/assets/img/profile.jpg" />
+      <Header imgUrl="/assets/img/profile.jpg" />
       <Section heading="Main links">
         <List>
           <ListItem>
