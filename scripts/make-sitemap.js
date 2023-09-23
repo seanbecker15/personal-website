@@ -34,7 +34,7 @@ const makeSitemap = (prevPath, tree) => {
   });
 };
 
-makeSitemap("", routes);
+makeSitemap("https://seanbecker.me", routes);
 
 fs.writeFileSync(path.join(__dirname, "../public/sitemap.xml"), xml.xml(), {
   encoding: "utf-8",
