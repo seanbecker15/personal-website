@@ -4,4 +4,5 @@ node_modules
 # Prevent build assets from being committed into sc
 !public/assets
 !public/index.html
+!public/sitemap.xml
 public
