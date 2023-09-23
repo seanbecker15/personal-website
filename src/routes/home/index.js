@@ -35,6 +35,9 @@ export default function Home() {
           <ListItem>
             <Anchor to="https://twitter.com/TheSeanBecker">Twitter</Anchor>
           </ListItem>
+          <ListItem>
+            <Anchor to="https://www.instagram.com/sean.bex/">Instagram</Anchor>
+          </ListItem>
         </List>
       </Section>
     </div>
