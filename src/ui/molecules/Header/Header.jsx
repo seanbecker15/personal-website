@@ -1,15 +1,9 @@
 import "./styles.scss";
 
-type Props = {
-  imgUrl: string,
-};
-
-export default function Header(props: Props) {
-  const { imgUrl } = props;
-
+export default function Header() {
   return (
     <div className="Header">
-      {imgUrl && <img className="Header__img" src={imgUrl} />}
+      <img className="Header__img" src={"/assets/img/profile.jpg"} />
     </div>
   );
 }
