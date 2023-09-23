@@ -7,8 +7,9 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "@ui": ["./ui/index.js"],
-      "@components": ["./components/index.js"],
+      "@ui/atoms": ["./ui/atoms/index.js"],
+      "@ui/molecules": ["./ui/molecules/index.js"],
+      "@utils": ["./utils/index.js"],
     },
 
     /* Bundler mode */

@@ -14,8 +14,8 @@ module.file_ext=.json
 module.file_ext=.jsx
 module.file_ext=.css
 module.file_ext=.scss
-module.name_mapper='^@components' -> '<PROJECT_ROOT>/src/components/index.js'
-module.name_mapper='^@ui' -> '<PROJECT_ROOT>/src/ui/index.js'
-module.name_mapper='^@pages' -> '<PROJECT_ROOT>/src/pages/index.js'
+module.name_mapper='^@ui/atoms' -> '<PROJECT_ROOT>/src/ui/atoms/index.js'
+module.name_mapper='^@ui/molecules' -> '<PROJECT_ROOT>/src/ui/molecules/index.js'
+module.name_mapper='^@utils' -> '<PROJECT_ROOT>/src/utils/index.js'
 
 [strict]

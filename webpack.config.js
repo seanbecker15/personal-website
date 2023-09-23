@@ -9,9 +9,8 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
     alias: {
-      "@components": path.resolve(__dirname, "src/components"),
-      "@pages": path.resolve(__dirname, "src/pages"),
       "@ui": path.resolve(__dirname, "src/ui"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
   plugins: [

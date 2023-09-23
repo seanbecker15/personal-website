@@ -1,4 +1,4 @@
-import { Anchor, Text } from '@ui'
+import { Anchor, Text } from '@ui/atoms'
 
 import projects from "./projects.json";
 

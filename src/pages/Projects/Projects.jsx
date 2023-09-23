@@ -2,8 +2,8 @@
 
 import type { Node } from "react";
 
-import { OpmSelector, ProjectCard } from "@components";
-import { Badge } from "@ui";
+import { OpmSelector, ProjectCard } from "@ui/molecules";
+import { Badge } from "@ui/atoms";
 import "./styles.scss";
 
 export default function Projects(): Node {

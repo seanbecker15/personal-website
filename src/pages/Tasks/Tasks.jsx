@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useRef } from "react";
-import * as Eisenhower from "../../components/EisenhowerMatrix";
-import SitemapItem from "../../components/SitemapItem";
-import List from "@ui/List";
-import ListItem from "@ui/ListItem";
+import * as Eisenhower from "@ui/molecules/EisenhowerMatrix";
+import SitemapItem from "@ui/molecules/SitemapItem";
+import { List, ListItem } from "@ui/atoms";
+
 import "./styles.scss";
 
 export default function Tasks() {

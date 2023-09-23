@@ -1,12 +1,9 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { isDevelopment } from "./util/env";
-import PageLayout from "./components/PageLayout";
-import Footer from "./components/Footer";
-const Learning = lazy(() => import("@pages/Learning"));
-const Tasks = lazy(() => import("@pages/Tasks"));
-const Projects = lazy(() => import("@pages/Projects"));
-const Sitemap = lazy(() => import("@pages/Sitemap"));
+
+import { Learning, Tasks, Projects, Sitemap } from "./pages";
+import { PageLayout, Footer } from "@ui/molecules";
+import { isDevelopment } from "@utils";
 
 export default function App() {
   return (

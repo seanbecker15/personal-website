@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import SitemapItem from "../../components/SitemapItem";
-import Anchor from "../../ui/Anchor";
-import { isDevelopment } from "../../util/env";
+import SitemapItem from "@ui/molecules/SitemapItem";
+import Anchor from "@ui/atoms/Anchor";
+import { isDevelopment } from "@utils";
 
 export default function Sitemap() {
   return (

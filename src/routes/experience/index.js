@@ -1,4 +1,4 @@
-import { Anchor, List, ListItem } from "@ui";
+import { Anchor, List, ListItem } from "@ui/atoms";
 
 export default function Experience() {
   return (
