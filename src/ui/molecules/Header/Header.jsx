@@ -1,7 +1,3 @@
-// @flow
-
-import type { Node } from "react";
-
 import "./styles.scss";
 
 type Props = {
@@ -9,7 +5,7 @@ type Props = {
   imgUrl: string,
 };
 
-export default function Header(props: Props): Node {
+export default function Header(props: Props) {
   const { heading, imgUrl } = props;
 
   return (

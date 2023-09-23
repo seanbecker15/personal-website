@@ -1,6 +1,3 @@
-// @flow
-
-import type { Node } from "react";
 import "./styles.scss";
 
 type Props = {

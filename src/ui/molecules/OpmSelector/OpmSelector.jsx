@@ -1,15 +1,9 @@
-// @flow
-
-import type { Node } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-type Props = {};
 
 const weeks = new Array(18).fill(null).map((_, idx) => idx + 1);
 
-export default function OpmSelector(props: Props): Node {
-  const [week, setWeek] = useState<string | null>(null);
+export default function OpmSelector() {
+  const [week, setWeek] = useState(null);
 
   return (
     <div>
@@ -31,8 +25,4 @@ export default function OpmSelector(props: Props): Node {
       )}
     </div>
   );
-}
-
-function getDefaultWeek() {
-  return 15;
 }

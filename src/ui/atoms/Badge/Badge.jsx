@@ -1,6 +1,5 @@
-// @flow
-import type { Node } from "react";
 import { Link } from "react-router-dom";
+
 import "./styles.scss";
 
 type Props = {
@@ -11,7 +10,12 @@ type Props = {
   title?: string,
 };
 
-export default function Badge(props: Props): Node {
+/**
+ * 
+ * @param {Props} props 
+ * @returns 
+ */
+export default function Badge(props: Props) {
   const renderContent = (imgSrc, text) => {
     let content = <div className="Badge__text">{text}</div>;
     if (imgSrc) {
@@ -37,7 +41,7 @@ export default function Badge(props: Props): Node {
           href={props.url}
           className="Badge__click-wrapper"
           target="_blank"
-          referrerPolicy="no-referrer"
+          rel="noreferrer"
         >
           {children}
         </a>

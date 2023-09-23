@@ -1,5 +1,4 @@
-//@flow
-import type { Element, ChildrenArray, Node } from "react";
+import type { Element, ChildrenArray } from "react";
 import { Children, useEffect, useRef } from "react";
 import Dot from "../Dot";
 
@@ -10,7 +9,7 @@ type Props = {
   children: ChildrenArray<Element<typeof Dot>>,
 };
 
-export default function Matrix(props: Props): Node {
+export default function Matrix(props: Props) {
   const canvasRef = useRef(null);
 
   const { size, xOffset, yOffset } = props;

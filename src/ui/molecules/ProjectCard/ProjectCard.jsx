@@ -1,7 +1,5 @@
-// @flow
-
-import type { Node } from "react";
 import { Link } from "react-router-dom";
+
 import "./styles.scss";
 
 type Props = {
@@ -15,7 +13,7 @@ type Props = {
   badges?: Node,
 };
 
-export default function ProjectCard(props: Props): Node {
+export default function ProjectCard(props: Props) {
   const renderTitle = () => {
     if (props.internalUrl) {
       return <Link to={props.internalUrl}>{props.title}</Link>;

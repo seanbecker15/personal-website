@@ -1,10 +1,4 @@
-// @flow
-
-import type { Node } from "react";
-
 import "./styles.scss";
-
-import { createElement } from "react";
 
 type Props = {
   level: number,
@@ -12,7 +6,7 @@ type Props = {
   children: Node,
 };
 
-export default function SitemapItem(props: Props): Node {
+export default function SitemapItem(props: Props) {
   const { level } = props;
 
   return (

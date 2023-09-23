@@ -16,7 +16,6 @@ const routes = [
     element: <Root />,
     loader: rootLoader,
     children: [
-      // new routes
       {
         path: '',
         element: <Home />,

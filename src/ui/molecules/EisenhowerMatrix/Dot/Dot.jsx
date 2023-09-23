@@ -1,7 +1,3 @@
-// @flow
-
-import type { Node } from "react";
-
 import { Fragment } from "react";
 
 type Props = {
@@ -24,6 +20,6 @@ type Props = {
 /**
  * @param {Props} props
  */
-export default function Dot(props: Props): Node {
+export default function Dot(props: Props) {
   return <Fragment />;
 }

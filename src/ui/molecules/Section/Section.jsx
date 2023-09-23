@@ -1,8 +1,3 @@
-// @flow
-
-import type { Node } from "react";
-import { Link } from "react-router-dom";
-
 import "./styles.scss";
 
 type Props = {
@@ -10,7 +5,7 @@ type Props = {
   children: Node,
 };
 
-export default function Section(props: Props): Node {
+export default function Section(props: Props) {
   const { heading, children } = props;
 
   return (

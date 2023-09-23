@@ -1,12 +1,9 @@
-// @flow
-
-import type { Node } from "react";
-
 import { OpmSelector, ProjectCard } from "@ui/molecules";
 import { Badge } from "@ui/atoms";
+
 import "./styles.scss";
 
-export default function Projects(): Node {
+export default function Projects() {
   return (
     <div className="Projects">
       <div className="Projects__header">
