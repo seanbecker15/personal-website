@@ -10,7 +10,7 @@ export default function Error() {
       }}
     >
       <div>
-        You've stumbled upon a critical error. Sorry about that!
+        {"You've stumbled upon a critical error. Sorry about that!"}
         <br />
         <br />
         Please reach out so I can fix this issue. My email is{" "}

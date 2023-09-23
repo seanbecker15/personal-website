@@ -1,4 +1,3 @@
-import type { RouteObject } from "react-router";
 import Root, { rootLoader } from "./root";
 import Education, { educationLoader } from "./education";
 import Experience, { experienceLoader } from "./experience";

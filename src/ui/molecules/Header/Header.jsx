@@ -1,7 +1,6 @@
 // @flow
 
 import type { Node } from "react";
-import { Link } from "react-router-dom";
 
 import "./styles.scss";
 

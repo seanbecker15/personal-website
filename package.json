@@ -11,7 +11,8 @@
     "build": "npx webpack --mode=production",
     "start": "npm run dev",
     "dev": "npx webpack serve",
-    "typecheck": "npx flow"
+    "typecheck": "npx flow",
+    "lint": "npx eslint src/"
   },
   "repository": {
     "type": "git",
@@ -33,12 +34,17 @@
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.20",
+    "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-flow": "^7.16.7",
     "@types/react": "^18.0.5",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.4",
     "babel-preset-react-app": "^10.0.1",
     "css-loader": "^6.7.1",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "flow-bin": "^0.176.2",
     "prettier": "2.6.2",
     "sass": "^1.50.0",

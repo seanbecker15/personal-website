@@ -1,4 +1,3 @@
-import { List, ListItem } from "@ui/atoms";
 import { ProjectList } from '@ui/molecules';
 
 export default function Archive() {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Header, ProjectList, Section } from "@ui/molecules";
+import { Header, Section } from "@ui/molecules";
 import { Anchor, List, ListItem } from "@ui/atoms";
 
 import "./styles.scss";
