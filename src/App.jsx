@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { isDevelopment } from "./util/env";
 import PageLayout from "./components/PageLayout";
 import Footer from "./components/Footer";
-import Job from "./pages/Job";
-const Home = lazy(() => import("@pages/Home"));
 const Learning = lazy(() => import("@pages/Learning"));
 const Tasks = lazy(() => import("@pages/Tasks"));
 const Projects = lazy(() => import("@pages/Projects"));
@@ -22,22 +20,6 @@ export default function App() {
       >
         <Routes>
           <Route path="/">
-            <Route
-              index
-              element={
-                <Suspense>
-                  <Home />
-                </Suspense>
-              }
-            />
-            <Route
-              path="job"
-              element={
-                <Suspense>
-                  <Job />
-                </Suspense>
-              }
-            />
             <Route
               path="projects"
               element={
@@ -78,14 +60,6 @@ export default function App() {
                 element={
                   <Suspense>
                     <Tasks />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="home"
-                element={
-                  <Suspense>
-                    <Home />
                   </Suspense>
                 }
               />
