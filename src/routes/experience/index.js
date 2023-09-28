@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet-async";
+
 import { Anchor, List, ListItem } from "@ui/atoms";
 
 export default function Experience() {
   return (
     <div className="Experience">
-      <h2>Current employment</h2>
-      <h3>FuboTV</h3>
+      <Helmet>
+        <title>Sean Becker - FuboTV</title>
+      </Helmet>
+      <h1>Sean Becker - FuboTV</h1>
+      <h2>{"FuboTV - Senior Software Engineer, SmartTV (Present)"}</h2>
 
       <List>
         <ListItem>
@@ -20,7 +25,7 @@ export default function Experience() {
           Client Side Ad Insertion (CSAI), Xbox, and LG (WebOS)
         </ListItem>
       </List>
-      <h3>{"Fubo Gaming (former subsidiary of FuboTV)"}</h3>
+      <h2>{"Fubo Gaming - Software Engineer"}</h2>
       <List>
         <ListItem>
           Assisted in shaping processes to scale team from 5 engineers to 15
@@ -45,7 +50,7 @@ export default function Experience() {
         </ListItem>
       </List>
 
-      <h2>Prior employment</h2>
+      <h2>Prior Employment</h2>
       <List>
         <ListItem>
           For information on prior employment, you can{" "}

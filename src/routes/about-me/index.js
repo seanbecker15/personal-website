@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet-async";
+
 import { List, ListItem } from "@ui/atoms";
 
 export default function AboutMe() {
   return (
     <div className="AboutMe">
-      <h2>About Me</h2>
-      {"Here's a little bit of information about me:"}
+      <Helmet>
+        <title>Sean Becker - About Me</title>
+      </Helmet>
+      <h1>Sean Becker - Technology / Business / Chicago</h1>
+      {"About me:"}
       <List>
         <ListItem>I grew up in Vernon Hills, IL</ListItem>
         <ListItem>
@@ -16,11 +21,11 @@ export default function AboutMe() {
           coast of the US
         </ListItem>
         <ListItem>
-          I frequently listen podcasts including Lex Fridman, Andrew Huberman,
+          I frequently listen to podcasts including Lex Fridman, Andrew Huberman,
           Joe Rogan, and Sam Harris
         </ListItem>
         <ListItem>
-          I enjoy building all things related to technology! Please reach out if you have an idea and want advice on how to build it {':)'}
+          I enjoy building all things related to technology. Please reach out if you have an idea and want advice on how to build it {':)'}
         </ListItem>
       </List>
     </div>

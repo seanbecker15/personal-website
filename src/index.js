@@ -1,6 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+
 import routes from "./routes";
 
 const createRootById = (id) => {
@@ -10,6 +12,8 @@ const createRootById = (id) => {
 };
 
 const router = createBrowserRouter(routes);
-createRootById("root").render(<RouterProvider router={router} />);
-
-// createRootById("root").render(<App />);
+createRootById("root").render(
+  <HelmetProvider>
+    <RouterProvider router={router} />
+  </HelmetProvider>
+);
