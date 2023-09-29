@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 import { List, ListItem } from "@ui/atoms";
 
-export default function AboutMe() {
+export function Component() {
   return (
     <div className="AboutMe">
       <Helmet>
@@ -32,4 +32,4 @@ export default function AboutMe() {
   );
 }
 
-export const aboutMeLoader = () => null;
+export const loader = () => null;

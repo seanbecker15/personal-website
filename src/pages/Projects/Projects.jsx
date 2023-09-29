@@ -10,7 +10,7 @@ export default function Projects() {
         <div>
           <img
             src="/assets/img/profile.jpg"
-            alt="Sean in black and white, smiling!"
+            alt="Sean in yellowstone, smiling!"
             className="Projects__photo-of-me"
           />
         </div>

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 import { Anchor, List, ListItem } from "@ui/atoms";
 
-export default function Experience() {
+export function Component() {
   return (
     <div className="Experience">
       <Helmet>
@@ -66,4 +66,4 @@ export default function Experience() {
   );
 }
 
-export const experienceLoader = () => null;
+export const loader = () => null;

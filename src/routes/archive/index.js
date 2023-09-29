@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 import { ProjectList } from '@ui/molecules';
 
-export default function Archive() {
+export function Component() {
   return <div className="Archive">
     <Helmet>
       <title>Sean Becker - Archive</title>
@@ -12,4 +12,4 @@ export default function Archive() {
   </div>;
 }
 
-export const archiveLoader = () => null;
+export const loader = () => null;

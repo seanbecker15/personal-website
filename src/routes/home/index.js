@@ -6,7 +6,7 @@ import { Anchor, List, ListItem } from "@ui/atoms";
 
 import "./styles.scss";
 
-export default function Home() {
+export function Component() {
   return (
     <div className="Home">
       <Helmet>
@@ -55,4 +55,4 @@ export default function Home() {
   );
 }
 
-export const homeLoader = () => null;
+export const loader = () => null;

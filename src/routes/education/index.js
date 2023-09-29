@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 import { Anchor } from "@ui/atoms";
 
-export default function Education() {
+export function Component() {
   return (
     <div className="Education">
       <Helmet>
@@ -16,4 +16,4 @@ export default function Education() {
   );
 }
 
-export const educationLoader = () => null;
+export const loader = () => null;
