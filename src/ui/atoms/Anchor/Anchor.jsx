@@ -9,7 +9,7 @@ type Props = {
  * @param {Props} props 
  * @returns 
  */
-export default function Anchor(props: Props): Node {
+export default function Anchor(props: Props) {
   return (
     <a
       href={props.to}

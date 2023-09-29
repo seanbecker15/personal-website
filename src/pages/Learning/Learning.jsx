@@ -16,7 +16,7 @@ export default function Learning() {
           <a
             href="https://journals.sagepub.com/doi/10.1177/10600280221081526"
             target="_blank"
-            referrerPolicy="no-referrer"
+            rel="noreferrer"
           >
             Uselessness of phenylephrine
           </a>
