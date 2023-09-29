@@ -38,7 +38,7 @@ export default function Home() {
       <Section heading="Contact">
         <List>
           <ListItem>
-            <Anchor to="https://github.com/seanbecker15">GitHub</Anchor>
+            <Anchor to="https://github.com/seanbecker15">Github</Anchor>
           </ListItem>
           <ListItem>
             <Anchor to="https://linkedin.com/in/seanmbecker">LinkedIn</Anchor>
