@@ -1,7 +1,7 @@
 {
   "name": "personal-website",
-  "version": "1.6.0",
-  "versionDate": "9/29/2023 11:13:16 AM",
+  "version": "1.7.0",
+  "versionDate": "10/2/2023 9:55:33 AM",
   "description": "Sean Becker's personal website",
   "main": "index.js",
   "directories": {
