@@ -30,12 +30,17 @@ if (!update[option]) {
 update[option]();
 
 const packagePath = path.join(__dirname, "../package.json");
+const packageLockPath = path.join(__dirname, "../package-lock.json");
 const newVersion = `${major}.${minor}.${patch}`;
 const now = new Date();
 const newVersionDate = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+
 const prevPackageContent = fs.readFileSync(packagePath, { encoding: "utf-8" });
 const newPackageContent = prevPackageContent
-  .replace(`"version": "${prevVersion}"`, `"version": "${newVersion}"`)
+  .replace(
+    `"version": "${prevVersion}"`,
+    `"version": "${newVersion}"`
+  )
   .replace(
     `"versionDate": "${prevVersionDate}"`,
     `"versionDate": "${newVersionDate}"`
