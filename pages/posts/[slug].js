@@ -45,6 +45,13 @@ export default function PostPage({
   nextPost,
   globalData,
 }) {
+  let dateString = null;
+  if (frontMatter.updated) {
+    dateString = `Updated on ${frontMatter.updated}`;
+  } else if (frontMatter.date) {
+    dateString = `Published on ${frontMatter.date}`;
+  }
+  
   return (
     <Layout>
       <SEO
@@ -54,11 +61,16 @@ export default function PostPage({
       <Header name={globalData.name} />
       <article className="px-6 md:px-0">
         <header>
-          <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-12">
+          <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-6">
             {frontMatter.title}
           </h1>
           {frontMatter.description && (
-            <p className="text-xl mb-4">{frontMatter.description}</p>
+            <p className="text-xl mb-4 text-center">{frontMatter.description}</p>
+          )}
+          {dateString && (
+            <p className="text-gray-500 dark:text-white text-sm mb-12 text-center">
+              {dateString} {frontMatter.timeToRead && ` • ${frontMatter.timeToRead} min read`}
+            </p>
           )}
         </header>
         <main>

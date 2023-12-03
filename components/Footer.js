@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const sunIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +81,19 @@ const ThemeSwitcher = () => {
 
 export default function Footer({ copyrightText }) {
   return (
-    <footer className="py-16 flex flex-col items-center">
-      <p className="dark:text-white uppercase mb-3 font-bold opacity-60">
+    <footer className="pt-16 flex flex-col items-center">
+      <ThemeSwitcher />
+
+      <p className="dark:text-white font-bold opacity-80 mt-16 mb-6">
         {copyrightText}
       </p>
-      <ThemeSwitcher />
+
+      <p className="text-gray-500 dark:text-white text-sm">
+        <Link href="/search">
+          <a className="text-gray-700 dark:text-white underline">{"Can't find what you're looking for?"}</a>
+        </Link>
+      </p>
+
     </footer>
   );
 }

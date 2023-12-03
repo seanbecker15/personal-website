@@ -1,5 +1,7 @@
 # Sean Becker Personal Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b70d7505-1685-46ce-9b5d-8fa4f111f48d/deploy-status)](https://app.netlify.com/sites/venerable-toffee-6eb310/deploys)
+
 This website uses a [Netlify Next.js Blog Template designed by Bejamas](https://user-images.githubusercontent.com/43764894/223762618-62742b4e-9424-44a7-8e85-9f7e4e19db54.png). It was originally a customm, hand rolled solution that just wasn't getting the job done in terms of SEO so I decided to go with this Netlify template instead.
 
 - [Next.js](https://github.com/vercel/next.js) v12
