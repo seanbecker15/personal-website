@@ -1,0 +1,168 @@
+---
+title: "OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API"
+description: Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.
+date: Dec 4 2023
+---
+
+{/* TODO */}
+{/* Just looking for code? You can find that [here](). */}
+
+## Introduction
+
+There are lots of things that make ChatGPT great under the hood, but let's face it: most people will never truly understand the internals.
+That doesn't mean that the entire stack has to be a mystery!
+
+### Why is this UX important?
+
+If you've ever used the OpenAI API you'll know that it's quite slow to use the standard API without streaming. It can take 10+ seconds to a receive
+a response depending on the complexity of the prompt. Although it is [probably a myth](https://www.reddit.com/r/webdev/comments/n66d0r/comment/gx5b2gl) that users will leave your website if it takes more than 3 seconds to load,
+it is still super important to have good _perceived performance_. For cutting edge innovation such as OpenAI it is even more important to prove that their tool is useful.
+Waiting for 10+ seconds leads to loss of context and a bad user experience.
+
+Though the total response time is likely the same, the streaming API sends back partial responses as they are generated.
+Users can see the response in real time and process the response as it is being generated. This makes a huge difference in the user experience.
+
+
+### Assumptions
+
+- I'm using React for this example, but most of this code should be very easy to plug into other frameworks.
+- I'm assuming that you already have a backend endpoint that forwards the OpenAI stream to your frontend. If not, I will be making a guide on how to do that soon.
+
+### Prerequisites
+
+```bash
+npm install eventsource-parser
+```
+
+## Let's get coding
+
+1. Scaffold our component. We'll need a prompt input, a submit button, and a location for our results.
+
+  ```javascript
+  import { useState, ChangeEvent } from "react";
+
+  // Assumes that you can already fetch a completion from OpenAI
+  import { fetchCompletion } from "./api";
+
+  const Chatbot = () => {
+    const [prompt, setPrompt] = useState("");
+    const [completion, setCompletion] = useState("");
+
+    const handleResponse = (response: Response) => {};
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setPrompt(e.target.value);
+    };
+
+    const handleSubmit = fetchCompletion(prompt)
+      .then(handleResponse)
+
+    return (
+      <div>
+        <div>
+          <input type="text" value={text} onChange={handleChange} />
+          <button type="button" onClick={handleSubmit}>Submit</button>
+        </div>
+        <p>{completion}</p>
+      </div>
+    );
+  }
+  ```
+
+2. Convert OpenAI stream to ReadableStream. OpenAI sends a stream of bytes. We need to convert that to a stream of strings.
+
+  ```javascript
+  const Chatbot = () => {
+    ...
+
+    const handleResponse = (response: Response) => {
+      const stream = response.body;
+      const textStream = response.body.pipeThrough(new TextDecoderStream());
+    }
+  }
+  ```
+
+
+3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
+If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
+
+  ```javascript
+    // Convert the stream to an async iterator.
+    // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
+    async function* streamAsyncIterator(stream: ReadableStream) {
+      const reader = stream.getReader();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) return;
+          yield value;
+        }
+      } finally {
+        reader.releaseLock();
+      }
+    }
+
+    ...
+
+    const Chatbot = () => {
+      ...
+
+      const handleResponse = (response: Response) => {
+        const stream = response.body;
+        const textStream = response.body.pipeThrough(new TextDecoderStream());
+        const asyncIteratorStream = streamAsyncIterator(textStream);
+        for await (const chunk of asyncIteratorStream) {
+          console.log(chunk);
+        }
+      }
+    }
+  ```
+
+4. Use eventsource-parser to parse the stream.
+
+  ```javascript
+
+  const Chatbot = () => {
+    ...
+
+    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+      console.log(event);
+    };
+
+    const handleResponse = (response: Response) => {
+      ...
+      const parser = createParser(parseEvent);
+      for await (const chunk of asyncIteratorStream) {
+        parser.feed(chunk);
+      }
+    }
+
+    ...
+  }
+  
+  ```
+
+5. Update completion text as we get each event. You should now see the completion text update as it is generated.
+
+  ```javascript
+  const Chatbot = () => {
+    ...
+
+    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+      if (event.type !== 'event' || event.data === '[DONE]') {
+        return
+      }
+
+      const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
+      setCompletion((prev) => {
+        if (prev) {
+          return prev + delta;
+        } else {
+          return delta;
+        }
+      });
+    };
+
+    ...
+  }
+  ```

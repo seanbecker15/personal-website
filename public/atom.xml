@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2023-12-03T21:03:29.829Z</updated>
+    <updated>2023-12-03T22:33:08.323Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -65,5 +65,158 @@ For information on prior employment, you can view my resume [here](/public/docs/
 
 Go back [home](/).
 ]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
+        <id>https://seanbecker.me/posts/chatgpt-text-completion</id>
+        <link href="https://seanbecker.me/posts/chatgpt-text-completion"/>
+        <updated>2023-12-04T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Let's use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
+        <content type="html"><![CDATA[
+# Chat-GPT Style Completion Using SSE Streaming
+
+## Introduction
+
+There are lots of things that make ChatGPT great under the hood. But let's face it, most people (myself included) will never truly understand the internals.
+But that doesn't mean that the entire stack is a mystery.
+
+## Why is this interface important?
+
+If you've ever used the OpenAI API, you know that it's a bit slow without using the streaming API. It can take 10+ seconds to a receive
+a response depending on the complexity of the prompt. Though the idea that users will leave your website if it takes more than 3 seconds to load is [probably a myth](https://www.reddit.com/r/webdev/comments/n66d0r/comment/gx5b2gl),
+it is still very important to have good _perceived_ performance. Waiting for 10+ seconds leads to loss of context and a bad user experience.
+
+Though the total response time is likely the same, the streaming API sends back partial responses as they are generated.
+Users can see the response in real time and process the response as it is being generated. This makes a huge difference in the user experience.
+
+## Let's get started
+
+### Assumptions
+
+- I'm using React for this example, but most of this code should be very easy to drop into other frameworks.
+- I'm assuming that you already have a backend forwarding the OpenAI stream to your frontend. If not, I will be making a guide on how to do that soon.
+{/* TODO */}
+- Just looking for code? You can find that [here]().
+
+### Prerequisites
+
+```bash
+npm install eventsource-parser
+```
+
+### Code
+
+
+1. Create a component with form submission
+
+  ```javascript
+  import { useState, ChangeEvent } from "react";
+
+  // Assuming that you have a function that fetches the completion from the OpenAI API
+  import { fetchCompletion } from "./api";
+
+  const Chatbot = () => {
+    const [prompt, setPrompt] = useState("");
+    const [completion, setCompletion] = useState("");
+
+    const handleResponse = (response: Response) => {};
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setPrompt(e.target.value);
+    };
+
+    const handleSubmit = fetchCompletion(prompt).then(handleResponse)
+
+    return (
+      <div>
+        <input type="text" value={text} onChange={handleChange} />
+        <button type="button" onClick={handleSubmit}>Submit</button>
+        <p>{completion}</p>
+      </div>
+    );
+  }
+  ```
+
+1. Convert stream to async iterable ReadableStream
+
+  ```javascript
+    // Convert the stream to an async iterator.
+    // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
+    async function* streamAsyncIterator(stream: ReadableStream) {
+      const reader = stream.getReader();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) return;
+          yield value;
+        }
+      } finally {
+        reader.releaseLock();
+      }
+    }
+
+    ...
+
+    const Chatbot = () => {
+      ...
+
+      const handleResponse = (response: Response) => {
+        const stream = response.body;
+        const asyncIteratorStream = streamAsyncIterator(stream);
+        for await (const chunk of asyncIteratorStream) {
+          console.log(chunk);
+        }
+      }
+    }
+  ```
+
+1. Use eventsource-parser to parse the SSE stream
+
+  ```javascript
+
+  const Chatbot = () => {
+    ...
+
+    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+      console.log(event);
+    };
+
+    const handleResponse = (response: Response) => {
+      ...
+      const parser = createParser(parseEvent);
+      for await (const chunk of asyncIteratorStream) {
+        parser.feed(chunk);
+      }
+    }
+
+    ...
+  }
+  
+  ```
+
+1. Update completion text as we get each event
+
+  ```javascript
+  const Chatbot = () => {
+    ...
+
+    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+      if (event.type !== 'event' || event.data === '[DONE]') {
+        return
+      }
+
+      const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
+      setCompletion((prev) => {
+        if (prev) {
+          return prev + delta;
+        } else {
+          return delta;
+        }
+      });
+    };
+
+    ...
+  }
+  ```]]></content>
     </entry>
 </feed>
