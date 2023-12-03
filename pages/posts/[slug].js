@@ -14,6 +14,7 @@ import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
+import ProjectList from '../../components/ProjectList';
 import SEO from '../../components/SEO';
 
 // Custom components/renderers to pass to MDX.
@@ -26,6 +27,7 @@ const components = {
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
   Head,
+  ProjectList,
 };
 
 export default function PostPage({

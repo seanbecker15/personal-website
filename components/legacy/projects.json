@@ -1,0 +1,50 @@
+[
+  {
+    "url": "https://webapps1.chicago.gov/chicagohouseshare/",
+    "title": "House Share Registration Portal - BACP Chicago",
+    "active": false,
+    "external": true
+  },
+  {
+    "url": "https://directives.chicagopolice.org/#directive/public/6164",
+    "title": "CASE Records Management System - Chicago Police Department",
+    "active": false,
+    "external": false
+  },
+  {
+    "url": "",
+    "title": "ACF Election Software - Cook County",
+    "active": false,
+    "external": false
+  },
+  {
+    "url": "https://github.com/seanbecker15/drink-please",
+    "title": "Drink Please (formerly bzzer.io)",
+    "active": false,
+    "external": false
+  },
+  {
+    "url": "https://sumospinnerv2.herokuapp.com/",
+    "title": "Sumo Spinner",
+    "active": false,
+    "external": true
+  },
+  {
+    "url": "",
+    "title": "Lateplateme - Tool for requesting food on the go",
+    "active": false,
+    "external": false
+  },
+  {
+    "url": "https://github.com/seanbecker15/we-eat",
+    "title": "We Eat - Yelp alternative built during Purdue CS 307",
+    "active": false,
+    "external": true
+  },
+  {
+    "url": "https://github.com/seanbecker15/cspan-scraper",
+    "title": "Purdue University CSPAN Research",
+    "active": false,
+    "external": true
+  }
+]
