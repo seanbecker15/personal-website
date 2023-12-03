@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getPosts } from '../utils/mdx-utils';
+import { generateRssFeed, getPosts } from '../utils/mdx-utils';
 
 import Card from '../components/Card';
 import Footer from '../components/Footer';
@@ -20,7 +20,7 @@ export default function Index({ posts, globalData }) {
         </h1>
         <ul className="w-full">
           {posts.map((post) => (
-            <Card post={post} key={post.slug} />
+            <Card post={post} key={post.filePath} />
           ))}
         </ul>
       </main>
@@ -38,6 +38,8 @@ export default function Index({ posts, globalData }) {
 }
 
 export function getStaticProps() {
+  generateRssFeed();
+
   const posts = getPosts();
   const globalData = getGlobalData();
 

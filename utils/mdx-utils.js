@@ -4,9 +4,10 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypePrism from '@mapbox/rehype-prism';
 import remarkGfm from 'remark-gfm';
+import { Feed } from 'feed';
 
-// POSTS_PATH is useful when you want to get the path to a specific file
 export const POSTS_PATH = path.join(process.cwd(), 'posts');
+export const PUBLIC_PATH = path.join(process.cwd(), 'public');
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const postFilePaths = fs
@@ -14,15 +15,17 @@ export const postFilePaths = fs
   // Only include md(x) files
   .filter((path) => /\.mdx?$/.test(path));
 
-export const sortPostsByDate = (posts) => {
+export const sortPostsByDate = (posts, asc) => {
   return posts.sort((a, b) => {
     const aDate = new Date(a.data.date);
     const bDate = new Date(b.data.date);
-    return bDate - aDate;
+    return asc ? aDate - bDate : bDate - aDate;
   });
 };
 
-export const getPosts = () => {
+export const makeSlug = (filePath) => filePath?.replace(/\.mdx?$/, '');
+
+export const getPosts = ({ asc = false } = { asc: false}) => {
   let posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
     const { content, data } = matter(source);
@@ -34,7 +37,7 @@ export const getPosts = () => {
     };
   });
 
-  posts = sortPostsByDate(posts);
+  posts = sortPostsByDate(posts, asc);
 
   return posts;
 };
@@ -72,7 +75,7 @@ export const getNextPostBySlug = (slug) => {
   // no prev post found
   if (!post) return emptyPost
 
-  const nextPostSlug = post?.filePath.replace(/\.mdx?$/, '');
+  const nextPostSlug = makeSlug(post?.filePath);
 
   return {
     title: post.data.title,
@@ -90,10 +93,54 @@ export const getPreviousPostBySlug = (slug) => {
   // no prev post found
   if (!post) return emptyPost;
 
-  const previousPostSlug = post?.filePath.replace(/\.mdx?$/, '');
+  const previousPostSlug = makeSlug(post?.filePath)
 
   return {
     title: post.data.title,
     slug: previousPostSlug,
   };
+};
+
+export const generateRssFeed = () => {
+  if (process.env.NODE_ENV === "production") {
+    return
+  }
+
+  const url = process.env.FEED_URL
+  const title = process.env.FEED_TITLE
+  const description = process.env.FEED_DESCRIPTION
+  const feedOptions = {
+    title,
+    description,
+    id: url,
+    link: url,
+    image: `${url}/logo.png`,
+    favicon: `${url}/favicon.ico`,
+    copyright: `Copyright ${new Date().getFullYear()} Sean Becker`,
+    generator: 'Feed for Node.js',
+    feedLinks: {
+      json: `${url}/feed.json`,
+      atom: `${url}/atom.xml`,
+      rss2: `${url}/rss.xml`,
+    },
+  };
+
+  const feed = new Feed(feedOptions);
+
+  const allPosts = getPosts({ asc: true });
+  allPosts.forEach((post) => {
+    const { data, content } = post;
+    const postUrl = `${url}/posts/${makeSlug(post.filePath)}`;
+    feed.addItem({
+      title: data.title,
+      id: postUrl,
+      link: postUrl,
+      description: data.description,
+      date: new Date(data.updated || data.date),
+      content, 
+    });
+  });
+  fs.writeFileSync(`${PUBLIC_PATH}/rss.xml`, feed.rss2());
+  fs.writeFileSync(`${PUBLIC_PATH}/feed.json`, feed.json1());
+  fs.writeFileSync(`${PUBLIC_PATH}/atom.xml`, feed.atom1());
 };

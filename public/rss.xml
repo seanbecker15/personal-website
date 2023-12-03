@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Sean Becker | Feed</title>
+        <link>https://seanbecker.me</link>
+        <description>Technology and Engineering Blog</description>
+        <lastBuildDate>Sun, 03 Dec 2023 21:03:29 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Sean Becker | Feed</title>
+            <url>https://seanbecker.me/logo.png</url>
+            <link>https://seanbecker.me</link>
+        </image>
+        <copyright>Copyright 2023 Sean Becker</copyright>
+        <item>
+            <title><![CDATA[About Me]]></title>
+            <link>https://seanbecker.me/posts/about-me</link>
+            <guid>https://seanbecker.me/posts/about-me</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[Just a few snippets of information to get to know me.]]></description>
+            <content:encoded><![CDATA[
+- I grew up in Vernon Hills, IL
+- I went to Purdue University where I majored in Computer Science and minored in Business Management        
+- I try to take at least one ski trip every year, usually on the west coast of the US
+- I frequently listen to podcasts including Lex Fridman, Andrew Huberman, Joe Rogan, and Sam Harris
+- I enjoy building all things related to technology. Please reach out if you have an idea and want advice on how to build it :)
+        
+Go back [home](/).
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Past Projects]]></title>
+            <link>https://seanbecker.me/posts/past-projects</link>
+            <guid>https://seanbecker.me/posts/past-projects</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[This is a list of some of the projects I've worked on in the past.]]></description>
+            <content:encoded><![CDATA[
+<ProjectList filter={({ active }) => !active} />
+
+Go back [home](/).
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Professional Experience]]></title>
+            <link>https://seanbecker.me/posts/professional-experience</link>
+            <guid>https://seanbecker.me/posts/professional-experience</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[A brief summary of my professional experience.]]></description>
+            <content:encoded><![CDATA[
+## FuboTV - Senior Software Engineer, SmartTV (Present)
+- [Redesigned SmartTV application](https://cordcuttersnews.com/fubo-is-rolling-out-a-new-improved-user-interface-with-re-designed-apps/) and launched to 300,000+ users.
+- Built new sidebar found on LG, Samsung, Vizio, Hisense, and Xbox applications.
+- Integrated new backend with existing player controls (i.e., the UI that allows users to control playback).
+- Built tooling to improve developer efficiency.
+
+## Fubo Gaming - Software Engineer
+- Interviewed 70+ candidates for engineering roles. Scaled team from 5 to 15 engineers.
+- Created template for making new Node.js packages that get published to Github npm registry.
+- Rewrote authentication flow & integration between sportsbook and TV
+    product; Coordinated effort between white-label provider, in-house
+    designers, in-house frontend team, and in-house platform team.
+- Integrated [Trustly](https://us.trustly.com) payment provider, simplifying deposit flow and substantially increasing first time deposit rate.
+- Coordinated regulatory changes required to launch Fubo Sportsbook in Iowa, Arizona, and New Jersey.
+
+## Prior Employment
+For information on prior employment, you can view my resume [here](/public/docs/resume.pdf).
+
+Go back [home](/).
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>
