@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2023-12-03T22:33:08.323Z</updated>
+    <updated>2023-12-03T23:39:59.734Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -71,32 +71,30 @@ Go back [home](/).
         <id>https://seanbecker.me/posts/chatgpt-text-completion</id>
         <link href="https://seanbecker.me/posts/chatgpt-text-completion"/>
         <updated>2023-12-04T06:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Let's use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
+        <summary type="html"><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
         <content type="html"><![CDATA[
-# Chat-GPT Style Completion Using SSE Streaming
+Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
 
 ## Introduction
 
-There are lots of things that make ChatGPT great under the hood. But let's face it, most people (myself included) will never truly understand the internals.
-But that doesn't mean that the entire stack is a mystery.
+There are lots of things that make ChatGPT great under the hood, but let's face it: most people will never truly understand the internals.
+That doesn't mean that the entire stack has to be a mystery!
 
-## Why is this interface important?
+### Why is this UX important?
 
-If you've ever used the OpenAI API, you know that it's a bit slow without using the streaming API. It can take 10+ seconds to a receive
-a response depending on the complexity of the prompt. Though the idea that users will leave your website if it takes more than 3 seconds to load is [probably a myth](https://www.reddit.com/r/webdev/comments/n66d0r/comment/gx5b2gl),
-it is still very important to have good _perceived_ performance. Waiting for 10+ seconds leads to loss of context and a bad user experience.
+If you've ever used the OpenAI API you'll know that it's quite slow to use the standard API without streaming. It can take 10+ seconds to a receive
+a response depending on the complexity of the prompt. Although it is [probably a myth](https://www.reddit.com/r/webdev/comments/n66d0r/comment/gx5b2gl) that users will leave your website if it takes more than 3 seconds to load,
+it is still super important to have good _perceived performance_. For companies working on cutting edge innovation such as OpenAI it is even more important to prove that their tool is useful.
+Waiting for 10+ seconds leads to loss of context and a bad user experience.
 
 Though the total response time is likely the same, the streaming API sends back partial responses as they are generated.
 Users can see the response in real time and process the response as it is being generated. This makes a huge difference in the user experience.
 
-## Let's get started
 
 ### Assumptions
 
-- I'm using React for this example, but most of this code should be very easy to drop into other frameworks.
-- I'm assuming that you already have a backend forwarding the OpenAI stream to your frontend. If not, I will be making a guide on how to do that soon.
-{/* TODO */}
-- Just looking for code? You can find that [here]().
+- I'm using React for this example, but most of this code should be very easy to plug into other frameworks.
+- I'm assuming that you already have a backend endpoint that forwards the OpenAI stream to your frontend. If not, I will be making a guide on how to do that soon.
 
 ### Prerequisites
 
@@ -104,42 +102,65 @@ Users can see the response in real time and process the response as it is being 
 npm install eventsource-parser
 ```
 
-### Code
+## Let's get coding
 
-
-1. Create a component with form submission
+1. Scaffold our component. We'll need a prompt input, a submit button, and a location for our results.
 
   ```javascript
   import { useState, ChangeEvent } from "react";
 
-  // Assuming that you have a function that fetches the completion from the OpenAI API
+  // Assumes that you can already fetch a completion from OpenAI
   import { fetchCompletion } from "./api";
 
   const Chatbot = () => {
     const [prompt, setPrompt] = useState("");
     const [completion, setCompletion] = useState("");
 
-    const handleResponse = (response: Response) => {};
+    const handleResponse = async (response: Response) => {};
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       setPrompt(e.target.value);
     };
 
-    const handleSubmit = fetchCompletion(prompt).then(handleResponse)
+    const handleSubmit = () => fetchCompletion(prompt)
+      .then(handleResponse)
 
     return (
       <div>
-        <input type="text" value={text} onChange={handleChange} />
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <div>
+          <input type="text" value={prompt} onChange={handleChange} />
+          <button type="button" onClick={handleSubmit}>Submit</button>
+        </div>
         <p>{completion}</p>
       </div>
     );
   }
   ```
 
-1. Convert stream to async iterable ReadableStream
+2. Convert OpenAI stream to ReadableStream. OpenAI sends a stream of bytes. We need to convert that to a stream of strings.
 
   ```javascript
+  ...
+
+  const Chatbot = () => {
+    ...
+
+    const handleResponse = async (response: Response) => {
+      const stream = response.body;
+      const textStream = stream.pipeThrough(new TextDecoderStream());
+    }
+
+    ...
+  }
+  ```
+
+
+3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
+If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
+
+  ```javascript
+    ...
+
     // Convert the stream to an async iterator.
     // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
     async function* streamAsyncIterator(stream: ReadableStream) {
@@ -160,19 +181,27 @@ npm install eventsource-parser
     const Chatbot = () => {
       ...
 
-      const handleResponse = (response: Response) => {
+      const handleResponse = async (response: Response) => {
         const stream = response.body;
-        const asyncIteratorStream = streamAsyncIterator(stream);
+        const textStream = stream.pipeThrough(new TextDecoderStream());
+        const asyncIteratorStream = streamAsyncIterator(textStream);
         for await (const chunk of asyncIteratorStream) {
           console.log(chunk);
         }
       }
+
+      ...
     }
   ```
 
-1. Use eventsource-parser to parse the SSE stream
+4. Previously we were logging each chunk to the console. Now we need to parse each chunk as an event. We'll use the `eventsource-parser` package to do this.
 
   ```javascript
+  ...
+
+  import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+
+  ...
 
   const Chatbot = () => {
     ...
@@ -181,7 +210,7 @@ npm install eventsource-parser
       console.log(event);
     };
 
-    const handleResponse = (response: Response) => {
+    const handleResponse = async (response: Response) => {
       ...
       const parser = createParser(parseEvent);
       for await (const chunk of asyncIteratorStream) {
@@ -194,9 +223,11 @@ npm install eventsource-parser
   
   ```
 
-1. Update completion text as we get each event
+5. Update completion text as we get each event. You should now see the completion text update as it is generated.
 
   ```javascript
+  ...
+
   const Chatbot = () => {
     ...
 
@@ -217,6 +248,10 @@ npm install eventsource-parser
 
     ...
   }
-  ```]]></content>
+  ```
+
+  ## Recap
+
+  That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).]]></content>
     </entry>
 </feed>
