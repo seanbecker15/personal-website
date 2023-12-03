@@ -57,6 +57,11 @@ export const getPostBySlug = async (slug) => {
   return { mdxSource, data, postFilePath };
 };
 
+const emptyPost = {
+  title: '',
+  slug: '',
+};
+
 export const getNextPostBySlug = (slug) => {
   const posts = getPosts();
   const currentFileName = `${slug}.mdx`;
@@ -65,7 +70,7 @@ export const getNextPostBySlug = (slug) => {
 
   const post = posts[currentPostIndex - 1];
   // no prev post found
-  if (!post) return null;
+  if (!post) return emptyPost
 
   const nextPostSlug = post?.filePath.replace(/\.mdx?$/, '');
 
@@ -83,7 +88,7 @@ export const getPreviousPostBySlug = (slug) => {
 
   const post = posts[currentPostIndex + 1];
   // no prev post found
-  if (!post) return null;
+  if (!post) return emptyPost;
 
   const previousPostSlug = post?.filePath.replace(/\.mdx?$/, '');
 
