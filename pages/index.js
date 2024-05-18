@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { generateRssFeed, getPosts } from '../utils/mdx-utils';
 
 import Card from '../components/Card';
 import Footer from '../components/Footer';
@@ -8,6 +7,7 @@ import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
+import { generateRssFeed, getPosts } from '../utils/mdx-utils';
 
 export default function Index({ posts, globalData }) {
   return (

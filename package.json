@@ -1,7 +1,7 @@
 {
   "name": "personal-website",
-  "version": "1.1.0",
-  "versionDate": "4/29/2024 3:59:53 PM",
+  "version": "1.2.0",
+  "versionDate": "5/18/2024 2:35:11 PM",
   "description": "My personal website built with Next.js and TailwindCSS",
   "author": "Sean Becker",
   "contributors": [
@@ -25,6 +25,7 @@
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.3",
+    "@next/third-parties": "^14.2.3",
     "@tailwindcss/typography": "^0.5.0",
     "@types/mdx": "^2.0.10",
     "classnames": "^2.3.1",

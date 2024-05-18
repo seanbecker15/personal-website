@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2023-12-03T23:39:59.734Z</updated>
+    <updated>2024-05-18T19:31:55.042Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
     <subtitle>Technology and Engineering Blog</subtitle>
     <logo>https://seanbecker.me/logo.png</logo>
     <icon>https://seanbecker.me/favicon.ico</icon>
-    <rights>Copyright 2023 Sean Becker</rights>
+    <rights>Copyright 2024 Sean Becker</rights>
     <entry>
         <title type="html"><![CDATA[About Me]]></title>
         <id>https://seanbecker.me/posts/about-me</id>
@@ -80,7 +80,7 @@ Just looking for code? You can find that [here](https://gist.github.com/seanbeck
 There are lots of things that make ChatGPT great under the hood, but let's face it: most people will never truly understand the internals.
 That doesn't mean that the entire stack has to be a mystery!
 
-### Why is this UX important?
+### Why this UX is important
 
 If you've ever used the OpenAI API you'll know that it's quite slow to use the standard API without streaming. It can take 10+ seconds to a receive
 a response depending on the complexity of the prompt. Although it is [probably a myth](https://www.reddit.com/r/webdev/comments/n66d0r/comment/gx5b2gl) that users will leave your website if it takes more than 3 seconds to load,
