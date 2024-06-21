@@ -1,0 +1,24 @@
+---
+title: "LG TV Wake on LAN"
+description: NodeJS script to wake LG (WebOS) TV over LAN
+date: Jun 21 2024
+---
+
+Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
+
+## Background
+
+Part of the challenge while working at Fubo is that we maintain several SmartTV applications.
+In order to reduce the overhead of maintenance we rely on tooling, one of which is the [ares-cli](https://webostv.developer.lge.com/develop/tools/cli-dev-guide).
+Unfortunately this CLI doesn't expose functionality to wake a TV up over the network, which is problematic for test automation.
+It also means that I need to get up from my desk to turn on my TV before launching a debug version of our application.
+
+## Solution
+I found several sources that wake LG over the network such as
+- [home assistant](https://github.com/home-assistant/core/blob/2ad5b1c3a6140a49d1113e86e46b68165cf26884/homeassistant/components/wake_on_lan/__init__.py#L34C15-L34C32)
+- [LGTVCompanion](https://github.com/JPersson77/LGTVCompanion)
+
+Both of these solutions are embedded in bigger systems so I decided take the code from [Console.cpp](https://github.com/JPersson77/LGTVCompanion/blob/5c63223a9866bc11965a3d9c9240313694c9c3f6/LGTV%20Companion%20Console/Console.cpp#L1531) and convert it to javascript.
+This can be quickly ported to another language using a good LLM like ChatGPT or Claude.
+
+You can find the javascript code [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
