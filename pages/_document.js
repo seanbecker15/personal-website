@@ -1,6 +1,5 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { GoogleAnalytics } from '@next/third-parties/google'
 
 class MyDocument extends Document {
   render() {
@@ -13,7 +12,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <GoogleAnalytics gaId="G-RBGFCZ9RGS" />
       </Html>
     );
   }
