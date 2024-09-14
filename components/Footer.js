@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import packageJson from '../package.json';
 
 const sunIcon = (
   <svg
@@ -84,17 +85,21 @@ export default function Footer({ copyrightText }) {
     <footer className="pt-16 flex flex-col items-center">
       <ThemeSwitcher />
 
-      <p className="dark:text-white font-bold opacity-80 mt-16 mb-6">
-        {copyrightText}
-      </p>
-
-      <p className="text-gray-500 dark:text-white text-sm">
+      <p className="text-gray-500 dark:text-white mt-8">
         <Link
           href="/search"
           className="text-gray-700 dark:text-white underline"
         >
           {"Can't find what you're looking for?"}
         </Link>
+      </p>
+
+      <p className="dark:text-white text-sm font-bold opacity-80 mt-12">
+        {copyrightText}
+      </p>
+
+      <p className="dark:text-white text-sm opacity-60 mt-2">
+        {`Updated ${packageJson.versionDate} - Version ${packageJson.version}`}
       </p>
     </footer>
   );

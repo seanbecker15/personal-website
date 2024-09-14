@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>https://seanbecker.me</id>
-  <title>Sean Becker | Feed</title>
-  <updated>2024-09-14T04:17:22.408Z</updated>
-  <generator>Feed for Node.js</generator>
-  <link rel="alternate" href="https://seanbecker.me" />
-  <link rel="self" href="https://seanbecker.me/atom.xml" />
-  <subtitle>Technology and Engineering Blog</subtitle>
-  <logo>https://seanbecker.me/logo.png</logo>
-  <icon>https://seanbecker.me/favicon.ico</icon>
-  <rights>Copyright 2024 Sean Becker</rights>
-  <entry>
-    <title type="html"><![CDATA[About Me]]></title>
-    <id>https://seanbecker.me/posts/about-me</id>
-    <link href="https://seanbecker.me/posts/about-me" />
-    <updated>2023-12-03T06:00:00.000Z</updated>
-    <summary type="html"><![CDATA[Just a few snippets of information to get to know me.]]></summary>
-    <content type="html"><![CDATA[
+    <id>https://seanbecker.me</id>
+    <title>Sean Becker | Feed</title>
+    <updated>2024-09-14T04:53:01.134Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="https://seanbecker.me"/>
+    <link rel="self" href="https://seanbecker.me/atom.xml"/>
+    <subtitle>Technology and Engineering Blog</subtitle>
+    <logo>https://seanbecker.me/logo.png</logo>
+    <icon>https://seanbecker.me/favicon.ico</icon>
+    <rights>Copyright 2024 Sean Becker</rights>
+    <entry>
+        <title type="html"><![CDATA[About Me]]></title>
+        <id>https://seanbecker.me/posts/about-me</id>
+        <link href="https://seanbecker.me/posts/about-me"/>
+        <updated>2023-12-03T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Just a few snippets of information to get to know me.]]></summary>
+        <content type="html"><![CDATA[
 - I grew up in Vernon Hills, IL
 - I went to Purdue University where I majored in Computer Science and minored in Business Management
 - I try to take at least one ski trip every year, usually on the west coast of the US
@@ -25,26 +25,26 @@
 
 Go back [home](/).
 ]]></content>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Past Projects]]></title>
-    <id>https://seanbecker.me/posts/past-projects</id>
-    <link href="https://seanbecker.me/posts/past-projects" />
-    <updated>2023-12-03T06:00:00.000Z</updated>
-    <summary type="html"><![CDATA[This is a list of some of the projects I've worked on in the past.]]></summary>
-    <content type="html"><![CDATA[
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Past Projects]]></title>
+        <id>https://seanbecker.me/posts/past-projects</id>
+        <link href="https://seanbecker.me/posts/past-projects"/>
+        <updated>2023-12-03T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[This is a list of some of the projects I've worked on in the past.]]></summary>
+        <content type="html"><![CDATA[
 <ProjectList filter={({ active }) => !active} />
 
 Go back [home](/).
 ]]></content>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Professional Experience]]></title>
-    <id>https://seanbecker.me/posts/professional-experience</id>
-    <link href="https://seanbecker.me/posts/professional-experience" />
-    <updated>2023-12-03T06:00:00.000Z</updated>
-    <summary type="html"><![CDATA[A brief summary of my professional experience.]]></summary>
-    <content type="html"><![CDATA[
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Professional Experience]]></title>
+        <id>https://seanbecker.me/posts/professional-experience</id>
+        <link href="https://seanbecker.me/posts/professional-experience"/>
+        <updated>2023-12-03T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A brief summary of my professional experience.]]></summary>
+        <content type="html"><![CDATA[
 ## FuboTV - Senior Software Engineer, SmartTV (Present)
 
 - [Redesigned SmartTV application](https://cordcuttersnews.com/fubo-is-rolling-out-a-new-improved-user-interface-with-re-designed-apps/) and launched to 300,000+ users.
@@ -68,14 +68,14 @@ For information on prior employment, you can view my resume [here](/docs/resume.
 
 Go back [home](/).
 ]]></content>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
-    <id>https://seanbecker.me/posts/chatgpt-text-completion</id>
-    <link href="https://seanbecker.me/posts/chatgpt-text-completion" />
-    <updated>2023-12-04T06:00:00.000Z</updated>
-    <summary type="html"><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
-    <content type="html"><![CDATA[
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
+        <id>https://seanbecker.me/posts/chatgpt-text-completion</id>
+        <link href="https://seanbecker.me/posts/chatgpt-text-completion"/>
+        <updated>2023-12-04T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
+        <content type="html"><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
 
 ## Introduction
@@ -255,14 +255,14 @@ const Chatbot = () => {
 
 That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
 ]]></content>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[LG TV Wake on LAN]]></title>
-    <id>https://seanbecker.me/posts/lg-wake-on-lan</id>
-    <link href="https://seanbecker.me/posts/lg-wake-on-lan" />
-    <updated>2024-06-21T05:00:00.000Z</updated>
-    <summary type="html"><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></summary>
-    <content type="html"><![CDATA[
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LG TV Wake on LAN]]></title>
+        <id>https://seanbecker.me/posts/lg-wake-on-lan</id>
+        <link href="https://seanbecker.me/posts/lg-wake-on-lan"/>
+        <updated>2024-06-21T05:00:00.000Z</updated>
+        <summary type="html"><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></summary>
+        <content type="html"><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
 
 ## Background
@@ -284,5 +284,5 @@ This can be quickly ported to another language using a good LLM like ChatGPT or 
 
 You can find the javascript code [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
 ]]></content>
-  </entry>
+    </entry>
 </feed>

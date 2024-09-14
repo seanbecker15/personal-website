@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Sean Becker | Feed</title>
-    <link>https://seanbecker.me</link>
-    <description>Technology and Engineering Blog</description>
-    <lastBuildDate>Sat, 14 Sep 2024 04:17:22 GMT</lastBuildDate>
-    <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
-    <generator>Feed for Node.js</generator>
-    <image>
-      <title>Sean Becker | Feed</title>
-      <url>https://seanbecker.me/logo.png</url>
-      <link>https://seanbecker.me</link>
-    </image>
-    <copyright>Copyright 2024 Sean Becker</copyright>
-    <item>
-      <title><![CDATA[About Me]]></title>
-      <link>https://seanbecker.me/posts/about-me</link>
-      <guid>https://seanbecker.me/posts/about-me</guid>
-      <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
-      <description><![CDATA[Just a few snippets of information to get to know me.]]></description>
-      <content:encoded><![CDATA[
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Sean Becker | Feed</title>
+        <link>https://seanbecker.me</link>
+        <description>Technology and Engineering Blog</description>
+        <lastBuildDate>Sat, 14 Sep 2024 04:53:01 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Sean Becker | Feed</title>
+            <url>https://seanbecker.me/logo.png</url>
+            <link>https://seanbecker.me</link>
+        </image>
+        <copyright>Copyright 2024 Sean Becker</copyright>
+        <item>
+            <title><![CDATA[About Me]]></title>
+            <link>https://seanbecker.me/posts/about-me</link>
+            <guid>https://seanbecker.me/posts/about-me</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[Just a few snippets of information to get to know me.]]></description>
+            <content:encoded><![CDATA[
 - I grew up in Vernon Hills, IL
 - I went to Purdue University where I majored in Computer Science and minored in Business Management
 - I try to take at least one ski trip every year, usually on the west coast of the US
@@ -29,26 +28,26 @@
 
 Go back [home](/).
 ]]></content:encoded>
-    </item>
-    <item>
-      <title><![CDATA[Past Projects]]></title>
-      <link>https://seanbecker.me/posts/past-projects</link>
-      <guid>https://seanbecker.me/posts/past-projects</guid>
-      <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
-      <description><![CDATA[This is a list of some of the projects I've worked on in the past.]]></description>
-      <content:encoded><![CDATA[
+        </item>
+        <item>
+            <title><![CDATA[Past Projects]]></title>
+            <link>https://seanbecker.me/posts/past-projects</link>
+            <guid>https://seanbecker.me/posts/past-projects</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[This is a list of some of the projects I've worked on in the past.]]></description>
+            <content:encoded><![CDATA[
 <ProjectList filter={({ active }) => !active} />
 
 Go back [home](/).
 ]]></content:encoded>
-    </item>
-    <item>
-      <title><![CDATA[Professional Experience]]></title>
-      <link>https://seanbecker.me/posts/professional-experience</link>
-      <guid>https://seanbecker.me/posts/professional-experience</guid>
-      <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
-      <description><![CDATA[A brief summary of my professional experience.]]></description>
-      <content:encoded><![CDATA[
+        </item>
+        <item>
+            <title><![CDATA[Professional Experience]]></title>
+            <link>https://seanbecker.me/posts/professional-experience</link>
+            <guid>https://seanbecker.me/posts/professional-experience</guid>
+            <pubDate>Sun, 03 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[A brief summary of my professional experience.]]></description>
+            <content:encoded><![CDATA[
 ## FuboTV - Senior Software Engineer, SmartTV (Present)
 
 - [Redesigned SmartTV application](https://cordcuttersnews.com/fubo-is-rolling-out-a-new-improved-user-interface-with-re-designed-apps/) and launched to 300,000+ users.
@@ -72,14 +71,14 @@ For information on prior employment, you can view my resume [here](/docs/resume.
 
 Go back [home](/).
 ]]></content:encoded>
-    </item>
-    <item>
-      <title><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
-      <link>https://seanbecker.me/posts/chatgpt-text-completion</link>
-      <guid>https://seanbecker.me/posts/chatgpt-text-completion</guid>
-      <pubDate>Mon, 04 Dec 2023 06:00:00 GMT</pubDate>
-      <description><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></description>
-      <content:encoded><![CDATA[
+        </item>
+        <item>
+            <title><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
+            <link>https://seanbecker.me/posts/chatgpt-text-completion</link>
+            <guid>https://seanbecker.me/posts/chatgpt-text-completion</guid>
+            <pubDate>Mon, 04 Dec 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></description>
+            <content:encoded><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
 
 ## Introduction
@@ -259,14 +258,14 @@ const Chatbot = () => {
 
 That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
 ]]></content:encoded>
-    </item>
-    <item>
-      <title><![CDATA[LG TV Wake on LAN]]></title>
-      <link>https://seanbecker.me/posts/lg-wake-on-lan</link>
-      <guid>https://seanbecker.me/posts/lg-wake-on-lan</guid>
-      <pubDate>Fri, 21 Jun 2024 05:00:00 GMT</pubDate>
-      <description><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></description>
-      <content:encoded><![CDATA[
+        </item>
+        <item>
+            <title><![CDATA[LG TV Wake on LAN]]></title>
+            <link>https://seanbecker.me/posts/lg-wake-on-lan</link>
+            <guid>https://seanbecker.me/posts/lg-wake-on-lan</guid>
+            <pubDate>Fri, 21 Jun 2024 05:00:00 GMT</pubDate>
+            <description><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></description>
+            <content:encoded><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
 
 ## Background
@@ -288,6 +287,6 @@ This can be quickly ported to another language using a good LLM like ChatGPT or 
 
 You can find the javascript code [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
 ]]></content:encoded>
-    </item>
-  </channel>
+        </item>
+    </channel>
 </rss>
