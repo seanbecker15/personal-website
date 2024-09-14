@@ -1,9 +1,9 @@
-/* eslint-disable */
-
 const path = require('path');
 const fs = require('fs');
-const prevVersion = require('../package.json').version;
-const prevVersionDate = require('../package.json').versionDate;
+
+const packageJson = require('../package.json');
+const prevVersion = packageJson.version;
+const prevVersionDate = packageJson.versionDate;
 
 let [major, minor, patch] = prevVersion.split('.');
 const update = {
