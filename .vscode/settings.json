@@ -3,6 +3,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "javascript.validate.enable": false,
   "[xml]": {
-    "editor.defaultFormatter": "DotJoshJohnson.xml"
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }

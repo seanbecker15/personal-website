@@ -1,5 +1,15 @@
 # .husky/pre-commit
+
+# Run prettier --write on all staged files
 npx prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
-npm run lint
-npm run bump-version
 git update-index --again
+
+# Run next lint on all files
+npm run lint
+
+# Bump version and add files to commit
+npm run bump-version
+git add package.json
+git add package-lock.json
+git add public/version.json
+
