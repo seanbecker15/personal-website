@@ -1,15 +1,9 @@
 {
   "name": "personal-website",
-  "version": "1.2.0",
-  "versionDate": "5/18/2024 2:35:11 PM",
+  "version": "2",
+  "versionDate": "9/13/2024 11:17:24 PM",
   "description": "My personal website built with Next.js and TailwindCSS",
   "author": "Sean Becker",
-  "contributors": [
-    "Charlie Gerard",
-    "Prince Wilson",
-    "Tara Manicsic",
-    "Thom Krupa"
-  ],
   "homepage": "https://seanbecker.me",
   "scripts": {
     "dev": "next",
@@ -18,7 +12,9 @@
     "start": "next start",
     "export": "next build && next export",
     "lint": "next lint",
-    "bump-version": "node scripts/bump-version.js && npm install"
+    "format": "prettier --write .",
+    "bump-version": "node scripts/bump-version.js && npm install",
+    "prepare": "husky"
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.9.0",
@@ -44,6 +40,7 @@
     "eslint": "<9.0.0",
     "eslint-config-next": "12.3.4",
     "eslint-config-prettier": "^8.3.0",
+    "husky": "^9.1.6",
     "postcss": "^8.4.4",
     "prettier": "^3.1.0",
     "tailwindcss": "^3.0.0"

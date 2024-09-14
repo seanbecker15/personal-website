@@ -1,6 +1,6 @@
 import Anchor from './legacy/components/Anchor';
 import Text from './legacy/components/Text';
-import projects from "./legacy/projects.json";
+import projects from './legacy/projects.json';
 
 export default function ProjectList({ filter }) {
   return (

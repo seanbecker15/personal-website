@@ -25,7 +25,7 @@ export const sortPostsByDate = (posts, asc) => {
 
 export const makeSlug = (filePath) => filePath?.replace(/\.mdx?$/, '');
 
-export const getPosts = ({ asc = false } = { asc: false}) => {
+export const getPosts = ({ asc = false } = { asc: false }) => {
   let posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
     const { content, data } = matter(source);
@@ -73,7 +73,7 @@ export const getNextPostBySlug = (slug) => {
 
   const post = posts[currentPostIndex - 1];
   // no prev post found
-  if (!post) return emptyPost
+  if (!post) return emptyPost;
 
   const nextPostSlug = makeSlug(post?.filePath);
 
@@ -93,7 +93,7 @@ export const getPreviousPostBySlug = (slug) => {
   // no prev post found
   if (!post) return emptyPost;
 
-  const previousPostSlug = makeSlug(post?.filePath)
+  const previousPostSlug = makeSlug(post?.filePath);
 
   return {
     title: post.data.title,
@@ -102,13 +102,13 @@ export const getPreviousPostBySlug = (slug) => {
 };
 
 export const generateRssFeed = () => {
-  if (process.env.NODE_ENV === "production") {
-    return
+  if (process.env.NODE_ENV === 'production') {
+    return;
   }
 
-  const url = process.env.FEED_URL
-  const title = process.env.FEED_TITLE
-  const description = process.env.FEED_DESCRIPTION
+  const url = process.env.FEED_URL;
+  const title = process.env.FEED_TITLE;
+  const description = process.env.FEED_DESCRIPTION;
   const feedOptions = {
     title,
     description,
@@ -137,7 +137,7 @@ export const generateRssFeed = () => {
       link: postUrl,
       description: data.description,
       date: new Date(data.updated || data.date),
-      content, 
+      content,
     });
   });
   fs.writeFileSync(`${PUBLIC_PATH}/rss.xml`, feed.rss2());

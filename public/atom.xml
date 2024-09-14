@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2024-09-14T03:53:42.304Z</updated>
+    <updated>2024-09-14T04:17:22.408Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -18,11 +18,11 @@
         <summary type="html"><![CDATA[Just a few snippets of information to get to know me.]]></summary>
         <content type="html"><![CDATA[
 - I grew up in Vernon Hills, IL
-- I went to Purdue University where I majored in Computer Science and minored in Business Management        
+- I went to Purdue University where I majored in Computer Science and minored in Business Management
 - I try to take at least one ski trip every year, usually on the west coast of the US
 - I frequently listen to podcasts including Lex Fridman, Andrew Huberman, Joe Rogan, and Sam Harris
 - I enjoy building all things related to technology. Please reach out if you have an idea and want advice on how to build it :)
-        
+
 Go back [home](/).
 ]]></content>
     </entry>
@@ -46,21 +46,24 @@ Go back [home](/).
         <summary type="html"><![CDATA[A brief summary of my professional experience.]]></summary>
         <content type="html"><![CDATA[
 ## FuboTV - Senior Software Engineer, SmartTV (Present)
+
 - [Redesigned SmartTV application](https://cordcuttersnews.com/fubo-is-rolling-out-a-new-improved-user-interface-with-re-designed-apps/) and launched to 300,000+ users.
 - Built new sidebar found on LG, Samsung, Vizio, Hisense, and Xbox applications.
 - Integrated new backend with existing player controls (i.e., the UI that allows users to control playback).
 - Built tooling to improve developer efficiency.
 
 ## Fubo Gaming - Software Engineer
+
 - Interviewed 70+ candidates for engineering roles. Scaled team from 5 to 15 engineers.
 - Created template for making new Node.js packages that get published to Github npm registry.
 - Rewrote authentication flow & integration between sportsbook and TV
-    product; Coordinated effort between white-label provider, in-house
-    designers, in-house frontend team, and in-house platform team.
+  product; Coordinated effort between white-label provider, in-house
+  designers, in-house frontend team, and in-house platform team.
 - Integrated [Trustly](https://us.trustly.com) payment provider, simplifying deposit flow and substantially increasing first time deposit rate.
 - Coordinated regulatory changes required to launch Fubo Sportsbook in Iowa, Arizona, and New Jersey.
 
 ## Prior Employment
+
 For information on prior employment, you can view my resume [here](/docs/resume.pdf).
 
 Go back [home](/).
@@ -90,7 +93,6 @@ Waiting for 10+ seconds leads to loss of context and a bad user experience.
 Though the total response time is likely the same, the streaming API sends back partial responses as they are generated.
 Users can see the response in real time and process the response as it is being generated. This makes a huge difference in the user experience.
 
-
 ### Assumptions
 
 - I'm using React for this example, but most of this code should be very easy to plug into other frameworks.
@@ -106,40 +108,75 @@ npm install eventsource-parser
 
 1. Scaffold our component. We'll need a prompt input, a submit button, and a location for our results.
 
-  ```javascript
-  import { useState, ChangeEvent } from "react";
+```javascript
+import { useState, ChangeEvent } from "react";
 
-  // Assumes that you can already fetch a completion from OpenAI
-  import { fetchCompletion } from "./api";
+// Assumes that you can already fetch a completion from OpenAI
+import { fetchCompletion } from "./api";
 
-  const Chatbot = () => {
-    const [prompt, setPrompt] = useState("");
-    const [completion, setCompletion] = useState("");
+const Chatbot = () => {
+  const [prompt, setPrompt] = useState("");
+  const [completion, setCompletion] = useState("");
 
-    const handleResponse = async (response: Response) => {};
+  const handleResponse = async (response: Response) => {};
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setPrompt(e.target.value);
-    };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrompt(e.target.value);
+  };
 
-    const handleSubmit = () => fetchCompletion(prompt)
-      .then(handleResponse)
+  const handleSubmit = () => fetchCompletion(prompt)
+    .then(handleResponse)
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <input type="text" value={prompt} onChange={handleChange} />
-          <button type="button" onClick={handleSubmit}>Submit</button>
-        </div>
-        <p>{completion}</p>
+        <input type="text" value={prompt} onChange={handleChange} />
+        <button type="button" onClick={handleSubmit}>Submit</button>
       </div>
-    );
-  }
-  ```
+      <p>{completion}</p>
+    </div>
+  );
+}
+```
 
 2. Convert OpenAI stream to ReadableStream. OpenAI sends a stream of bytes. We need to convert that to a stream of strings.
 
-  ```javascript
+```javascript
+...
+
+const Chatbot = () => {
+  ...
+
+  const handleResponse = async (response: Response) => {
+    const stream = response.body;
+    const textStream = stream.pipeThrough(new TextDecoderStream());
+  }
+
+  ...
+}
+```
+
+3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
+   If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
+
+```javascript
+  ...
+
+  // Convert the stream to an async iterator.
+  // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
+  async function* streamAsyncIterator(stream: ReadableStream) {
+    const reader = stream.getReader();
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) return;
+        yield value;
+      }
+    } finally {
+      reader.releaseLock();
+    }
+  }
+
   ...
 
   const Chatbot = () => {
@@ -148,110 +185,104 @@ npm install eventsource-parser
     const handleResponse = async (response: Response) => {
       const stream = response.body;
       const textStream = stream.pipeThrough(new TextDecoderStream());
+      const asyncIteratorStream = streamAsyncIterator(textStream);
+      for await (const chunk of asyncIteratorStream) {
+        console.log(chunk);
+      }
     }
 
     ...
   }
-  ```
-
-
-3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
-If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
-
-  ```javascript
-    ...
-
-    // Convert the stream to an async iterator.
-    // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
-    async function* streamAsyncIterator(stream: ReadableStream) {
-      const reader = stream.getReader();
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) return;
-          yield value;
-        }
-      } finally {
-        reader.releaseLock();
-      }
-    }
-
-    ...
-
-    const Chatbot = () => {
-      ...
-
-      const handleResponse = async (response: Response) => {
-        const stream = response.body;
-        const textStream = stream.pipeThrough(new TextDecoderStream());
-        const asyncIteratorStream = streamAsyncIterator(textStream);
-        for await (const chunk of asyncIteratorStream) {
-          console.log(chunk);
-        }
-      }
-
-      ...
-    }
-  ```
+```
 
 4. Previously we were logging each chunk to the console. Now we need to parse each chunk as an event. We'll use the `eventsource-parser` package to do this.
 
-  ```javascript
+```javascript
+...
+
+import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+
+...
+
+const Chatbot = () => {
   ...
 
-  import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+  const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+    console.log(event);
+  };
 
-  ...
-
-  const Chatbot = () => {
+  const handleResponse = async (response: Response) => {
     ...
-
-    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
-      console.log(event);
-    };
-
-    const handleResponse = async (response: Response) => {
-      ...
-      const parser = createParser(parseEvent);
-      for await (const chunk of asyncIteratorStream) {
-        parser.feed(chunk);
-      }
+    const parser = createParser(parseEvent);
+    for await (const chunk of asyncIteratorStream) {
+      parser.feed(chunk);
     }
-
-    ...
   }
-  
-  ```
+
+  ...
+}
+
+```
 
 5. Update completion text as we get each event. You should now see the completion text update as it is generated.
 
-  ```javascript
+```javascript
+...
+
+const Chatbot = () => {
   ...
 
-  const Chatbot = () => {
-    ...
+  const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+    if (event.type !== 'event' || event.data === '[DONE]') {
+      return
+    }
 
-    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
-      if (event.type !== 'event' || event.data === '[DONE]') {
-        return
+    const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
+    setCompletion((prev) => {
+      if (prev) {
+        return prev + delta;
+      } else {
+        return delta;
       }
+    });
+  };
 
-      const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
-      setCompletion((prev) => {
-        if (prev) {
-          return prev + delta;
-        } else {
-          return delta;
-        }
-      });
-    };
+  ...
+}
+```
 
-    ...
-  }
-  ```
+## Recap
 
-  ## Recap
+That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LG TV Wake on LAN]]></title>
+        <id>https://seanbecker.me/posts/lg-wake-on-lan</id>
+        <link href="https://seanbecker.me/posts/lg-wake-on-lan"/>
+        <updated>2024-06-21T05:00:00.000Z</updated>
+        <summary type="html"><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></summary>
+        <content type="html"><![CDATA[
+Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
 
-  That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).]]></content>
+## Background
+
+Part of the challenge while working at Fubo is that we maintain several SmartTV applications.
+In order to reduce the overhead of maintenance we rely on tooling, one of which is the [ares-cli](https://webostv.developer.lge.com/develop/tools/cli-dev-guide).
+Unfortunately this CLI doesn't expose functionality to wake a TV up over the network, which is problematic for test automation.
+It also means that I need to get up from my desk to turn on my TV before launching a debug version of our application.
+
+## Solution
+
+I found several sources that wake LG over the network such as
+
+- [home assistant](https://github.com/home-assistant/core/blob/2ad5b1c3a6140a49d1113e86e46b68165cf26884/homeassistant/components/wake_on_lan/__init__.py#L34C15-L34C32)
+- [LGTVCompanion](https://github.com/JPersson77/LGTVCompanion)
+
+Both of these solutions are embedded in bigger systems so I decided take the code from [Console.cpp](https://github.com/JPersson77/LGTVCompanion/blob/5c63223a9866bc11965a3d9c9240313694c9c3f6/LGTV%20Companion%20Console/Console.cpp#L1531) and convert it to javascript.
+This can be quickly ported to another language using a good LLM like ChatGPT or Claude.
+
+You can find the javascript code [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
+]]></content>
     </entry>
 </feed>

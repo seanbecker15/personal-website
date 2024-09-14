@@ -1,5 +1,5 @@
 ---
-title: "OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API"
+title: 'OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API'
 description: Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.
 date: Dec 4 2023
 ---
@@ -21,7 +21,6 @@ Waiting for 10+ seconds leads to loss of context and a bad user experience.
 Though the total response time is likely the same, the streaming API sends back partial responses as they are generated.
 Users can see the response in real time and process the response as it is being generated. This makes a huge difference in the user experience.
 
-
 ### Assumptions
 
 - I'm using React for this example, but most of this code should be very easy to plug into other frameworks.
@@ -37,40 +36,75 @@ npm install eventsource-parser
 
 1. Scaffold our component. We'll need a prompt input, a submit button, and a location for our results.
 
-  ```javascript
-  import { useState, ChangeEvent } from "react";
+```javascript
+import { useState, ChangeEvent } from "react";
 
-  // Assumes that you can already fetch a completion from OpenAI
-  import { fetchCompletion } from "./api";
+// Assumes that you can already fetch a completion from OpenAI
+import { fetchCompletion } from "./api";
 
-  const Chatbot = () => {
-    const [prompt, setPrompt] = useState("");
-    const [completion, setCompletion] = useState("");
+const Chatbot = () => {
+  const [prompt, setPrompt] = useState("");
+  const [completion, setCompletion] = useState("");
 
-    const handleResponse = async (response: Response) => {};
+  const handleResponse = async (response: Response) => {};
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setPrompt(e.target.value);
-    };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrompt(e.target.value);
+  };
 
-    const handleSubmit = () => fetchCompletion(prompt)
-      .then(handleResponse)
+  const handleSubmit = () => fetchCompletion(prompt)
+    .then(handleResponse)
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <input type="text" value={prompt} onChange={handleChange} />
-          <button type="button" onClick={handleSubmit}>Submit</button>
-        </div>
-        <p>{completion}</p>
+        <input type="text" value={prompt} onChange={handleChange} />
+        <button type="button" onClick={handleSubmit}>Submit</button>
       </div>
-    );
-  }
-  ```
+      <p>{completion}</p>
+    </div>
+  );
+}
+```
 
 2. Convert OpenAI stream to ReadableStream. OpenAI sends a stream of bytes. We need to convert that to a stream of strings.
 
-  ```javascript
+```javascript
+...
+
+const Chatbot = () => {
+  ...
+
+  const handleResponse = async (response: Response) => {
+    const stream = response.body;
+    const textStream = stream.pipeThrough(new TextDecoderStream());
+  }
+
+  ...
+}
+```
+
+3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
+   If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
+
+```javascript
+  ...
+
+  // Convert the stream to an async iterator.
+  // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
+  async function* streamAsyncIterator(stream: ReadableStream) {
+    const reader = stream.getReader();
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) return;
+        yield value;
+      }
+    } finally {
+      reader.releaseLock();
+    }
+  }
+
   ...
 
   const Chatbot = () => {
@@ -79,108 +113,72 @@ npm install eventsource-parser
     const handleResponse = async (response: Response) => {
       const stream = response.body;
       const textStream = stream.pipeThrough(new TextDecoderStream());
+      const asyncIteratorStream = streamAsyncIterator(textStream);
+      for await (const chunk of asyncIteratorStream) {
+        console.log(chunk);
+      }
     }
 
     ...
   }
-  ```
-
-
-3. Make ReadableStream async iterable. ReadableStream is not yet an async iterable in browsers, so we need to convert it to one.
-If our target platform were NodeJS we wouldn't need this step as ReadableStream is already an async iterable in NodeJS.
-
-  ```javascript
-    ...
-
-    // Convert the stream to an async iterator.
-    // Found here https://jakearchibald.com/2017/async-iterators-and-generators/#making-streams-iterate
-    async function* streamAsyncIterator(stream: ReadableStream) {
-      const reader = stream.getReader();
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) return;
-          yield value;
-        }
-      } finally {
-        reader.releaseLock();
-      }
-    }
-
-    ...
-
-    const Chatbot = () => {
-      ...
-
-      const handleResponse = async (response: Response) => {
-        const stream = response.body;
-        const textStream = stream.pipeThrough(new TextDecoderStream());
-        const asyncIteratorStream = streamAsyncIterator(textStream);
-        for await (const chunk of asyncIteratorStream) {
-          console.log(chunk);
-        }
-      }
-
-      ...
-    }
-  ```
+```
 
 4. Previously we were logging each chunk to the console. Now we need to parse each chunk as an event. We'll use the `eventsource-parser` package to do this.
 
-  ```javascript
+```javascript
+...
+
+import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+
+...
+
+const Chatbot = () => {
   ...
 
-  import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
+  const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+    console.log(event);
+  };
 
-  ...
-
-  const Chatbot = () => {
+  const handleResponse = async (response: Response) => {
     ...
-
-    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
-      console.log(event);
-    };
-
-    const handleResponse = async (response: Response) => {
-      ...
-      const parser = createParser(parseEvent);
-      for await (const chunk of asyncIteratorStream) {
-        parser.feed(chunk);
-      }
+    const parser = createParser(parseEvent);
+    for await (const chunk of asyncIteratorStream) {
+      parser.feed(chunk);
     }
-
-    ...
   }
-  
-  ```
+
+  ...
+}
+
+```
 
 5. Update completion text as we get each event. You should now see the completion text update as it is generated.
 
-  ```javascript
+```javascript
+...
+
+const Chatbot = () => {
   ...
 
-  const Chatbot = () => {
-    ...
+  const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
+    if (event.type !== 'event' || event.data === '[DONE]') {
+      return
+    }
 
-    const parseEvent = (event: ParsedEvent | ReconnectInterval) => {
-      if (event.type !== 'event' || event.data === '[DONE]') {
-        return
+    const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
+    setCompletion((prev) => {
+      if (prev) {
+        return prev + delta;
+      } else {
+        return delta;
       }
+    });
+  };
 
-      const delta = JSON.parse(event.data).choices[0]?.delta?.content || "";
-      setCompletion((prev) => {
-        if (prev) {
-          return prev + delta;
-        } else {
-          return delta;
-        }
-      });
-    };
+  ...
+}
+```
 
-    ...
-  }
-  ```
+## Recap
 
-  ## Recap
-
-  That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
+That's it! You should now have a working chatbot that can complete sentences in real time. You can find the full code [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).

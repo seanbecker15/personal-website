@@ -89,11 +89,13 @@ export default function Footer({ copyrightText }) {
       </p>
 
       <p className="text-gray-500 dark:text-white text-sm">
-        <Link href="/search" className="text-gray-700 dark:text-white underline">
+        <Link
+          href="/search"
+          className="text-gray-700 dark:text-white underline"
+        >
           {"Can't find what you're looking for?"}
         </Link>
       </p>
-
     </footer>
   );
 }
