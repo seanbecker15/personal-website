@@ -1,3 +1,5 @@
-npm run format
+# .husky/pre-commit
+npx prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 npm run lint
 npm run bump-version
+git update-index --again
