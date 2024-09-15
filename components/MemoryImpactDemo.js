@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import {
   LineChart,
   Line,
@@ -10,11 +10,24 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const calculateAverageRenderTime = (data) => {
+  if (data.length === 0) {
+    return null;
+  }
+
+  const total = data.reduce((acc, curr) => acc + curr.time, 0);
+  return total / data.length;
+};
+
 const MemoryImpactDemo = () => {
   const [memoryData, setMemoryData] = useState([]);
   const [isAllocating, setIsAllocating] = useState(false);
   const [allocationInterval, setAllocationInterval] = useState(null);
+  const [showRenderTime, setShowRenderTime] = useState(false);
+  const [showMemoryUsage, setShowMemoryUsage] = useState(false);
   const [memoryHog, setMemoryHog] = useState([]);
+  const renderTimesRef = useRef([]);
+  const renderStartTime = performance.now();
 
   const measureMemory = useCallback(async () => {
     if ('measureUserAgentSpecificMemory' in performance) {
@@ -74,7 +87,7 @@ const MemoryImpactDemo = () => {
 
   const startAllocation = useCallback(() => {
     setIsAllocating(true);
-    const interval = setInterval(allocateMemory, 1000);
+    const interval = setInterval(allocateMemory, 100);
     setAllocationInterval(interval);
   }, [allocateMemory]);
 
@@ -92,6 +105,10 @@ const MemoryImpactDemo = () => {
       }
     };
   }, [allocationInterval]);
+
+  useEffect(() => {
+    renderTimesRef.current.push({ time: performance.now() - renderStartTime });
+  });
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
@@ -167,7 +184,7 @@ const MemoryImpactDemo = () => {
           }}
         >
           <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>
-            Last Response Time
+            Last Computation Time
           </h2>
           <p>
             {memoryData.length > 0
@@ -178,43 +195,118 @@ const MemoryImpactDemo = () => {
           </p>
         </div>
       </div>
+      <div style={{ width: '100%' }}>
+        <button
+          onClick={() => setShowRenderTime((prev) => !prev)}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            marginTop: '20px',
+            marginBottom: '20px',
+          }}
+        >
+          {showRenderTime ? 'Hide' : 'Show'} Render Time
+        </button>
+      </div>
+      {showRenderTime && (
+        <div
+          style={{
+            border: '1px solid #ddd',
+            borderRadius: '5px',
+            padding: '15px',
+          }}
+        >
+          <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>
+            Render Time (Avg:{' '}
+            {calculateAverageRenderTime(renderTimesRef.current)?.toFixed(2) ||
+              'N/A'}{' '}
+            ms )
+          </h2>
+          <div style={{ height: '400px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={[...renderTimesRef.current]}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="time" />
+                <YAxis yAxisId="left" />
+                <YAxis yAxisId="right" orientation="right" />
+                <Tooltip />
+                <Legend />
+                <Line
+                  yAxisId="left"
+                  type="monotone"
+                  dataKey="time"
+                  stroke="#8884d8"
+                  name="Render Time (ms)"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
       <div
         style={{
-          border: '1px solid #ddd',
-          borderRadius: '5px',
-          padding: '15px',
+          width: '100%',
         }}
       >
-        <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>
-          Memory Usage and Response Time
-        </h2>
-        <div style={{ height: '400px' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={memoryData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time" />
-              <YAxis yAxisId="left" />
-              <YAxis yAxisId="right" orientation="right" />
-              <Tooltip />
-              <Legend />
-              <Line
-                yAxisId="left"
-                type="monotone"
-                dataKey="memoryUsage"
-                stroke="#8884d8"
-                name="Memory Usage (MB)"
-              />
-              <Line
-                yAxisId="right"
-                type="monotone"
-                dataKey="responseTime"
-                stroke="#82ca9d"
-                name="Response Time (ms)"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <button
+          onClick={() => setShowMemoryUsage((prev) => !prev)}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            marginTop: '20px',
+            marginBottom: '20px',
+          }}
+        >
+          {showMemoryUsage ? 'Hide' : 'Show'} Memory Usage and Computation Time
+        </button>
       </div>
+      {showMemoryUsage && (
+        <div
+          style={{
+            border: '1px solid #ddd',
+            borderRadius: '5px',
+            padding: '15px',
+          }}
+        >
+          <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>
+            Memory Usage and Computation Time
+          </h2>
+          <div style={{ height: '400px' }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={memoryData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="time" />
+                <YAxis yAxisId="left" />
+                <YAxis yAxisId="right" orientation="right" />
+                <Tooltip />
+                <Legend />
+                <Line
+                  yAxisId="left"
+                  type="monotone"
+                  dataKey="memoryUsage"
+                  stroke="#8884d8"
+                  name="Memory Usage (MB)"
+                />
+                <Line
+                  yAxisId="right"
+                  type="monotone"
+                  dataKey="responseTime"
+                  stroke="#82ca9d"
+                  name="Computation Time (ms)"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
