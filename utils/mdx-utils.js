@@ -102,10 +102,6 @@ export const getPreviousPostBySlug = (slug) => {
 };
 
 export const generateRssFeed = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return;
-  }
-
   const url = process.env.FEED_URL;
   const title = process.env.FEED_TITLE;
   const description = process.env.FEED_DESCRIPTION;
