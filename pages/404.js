@@ -1,11 +1,17 @@
 import Link from 'next/link';
 
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
+import { getGlobalData } from '../utils/global-data';
 
 export default function Custom404() {
+  const globalData = getGlobalData();
+
   return (
     <Layout>
+      <Header name={globalData.name} />
       <main className="w-full">
         <div className="text-center py-20">
           <h1 className="text-6xl lg:text-8xl font-bold mb-4">404</h1>
@@ -19,6 +25,7 @@ export default function Custom404() {
           </Link>
         </div>
       </main>
+      <Footer copyrightText={globalData.footerText} />
       <GradientBackground
         variant="large"
         className="fixed top-20 opacity-40 dark:opacity-60"
