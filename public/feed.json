@@ -55,9 +55,9 @@
       "date_modified": "2025-04-20T05:00:00.000Z"
     },
     {
-      "id": "https://seanbecker.me/blog/at-proto",
+      "id": "https://seanbecker.me/blog/claiming-my-own-at-handle",
       "content_html": "\nAfter reading [Dan Abramov’s post](https://overreacted.io/where-its-at/) about the AT Protocol, I became curious about how identity works on Bluesky. Using [atproto-browser.vercel.app](https://atproto-browser.vercel.app/), I realized how simple it is to connect your own domain to your account. My profile now lives at **at://seanbecker.me**.\n\n## Steps\n\n### 1. Find your DID\n\nGo to [https://atproto-browser.vercel.app/](https://atproto-browser.vercel.app/) and look up your existing Bluesky handle, in my case `seanbex.bsky.social`.\nMy DID is:\n\n```\ndid:plc:p2epzw3sltq7tdsg7sn7qenr\n```\n\n### 2. Add the `.well-known` verification file\n\nOn your website, create a file at:\n\n```\nhttps://seanbecker.me/.well-known/atproto-did\n```\n\nThe file should contain only your DID:\n\n```\ndid:plc:p2epzw3sltq7tdsg7sn7qenr\n```\n\nMake sure there are no extra spaces or newlines.\n\n### 3. Update your handle in Bluesky\n\nIn the Bluesky app or on the web:\n\n- Go to **Settings → Change handle**\n- Select **I have my own domain**\n- Enter `seanbecker.me`\n\nBluesky will check the `.well-known` file and update your handle once verified.\n\n## Closing thoughts\n\nThe AT Protocol makes it possible to manage your online identity under your own domain, independent of any specific platform. It’s a small change that makes the web feel a little more open again.\n\nThanks to [Dan Abramov](https://overreacted.io) for the inspiration to explore this.\n",
-      "url": "https://seanbecker.me/blog/at-proto",
+      "url": "https://seanbecker.me/blog/claiming-my-own-at-handle",
       "title": "Claiming My Own AT Protocol Handle (at://seanbecker.me)",
       "summary": "How I connected my Bluesky account to my own domain using the AT Protocol.",
       "date_modified": "2025-10-04T00:00:00.000Z"

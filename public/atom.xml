@@ -518,8 +518,8 @@ _Optional_
     </entry>
     <entry>
         <title type="html"><![CDATA[Claiming My Own AT Protocol Handle (at://seanbecker.me)]]></title>
-        <id>https://seanbecker.me/blog/at-proto</id>
-        <link href="https://seanbecker.me/blog/at-proto"/>
+        <id>https://seanbecker.me/blog/claiming-my-own-at-handle</id>
+        <link href="https://seanbecker.me/blog/claiming-my-own-at-handle"/>
         <updated>2025-10-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[How I connected my Bluesky account to my own domain using the AT Protocol.]]></summary>
         <content type="html"><![CDATA[
