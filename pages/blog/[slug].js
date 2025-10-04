@@ -56,6 +56,7 @@ export default function PostPage({
     <Layout>
       <SEO
         title={`${frontMatter.title} - ${globalData.name}`}
+        ogImageTitle={frontMatter.title}
         description={frontMatter.description}
         image={frontMatter.image}
       />

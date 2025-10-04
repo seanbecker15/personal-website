@@ -1,13 +1,15 @@
 import Head from 'next/head';
 
-export default function SEO({ title, description, image, url }) {
+// TODO: Refactor component to be more composable (rather than pass in ogImageTitle, break it up)
+export default function SEO({ title, description, image, url, ogImageTitle }) {
   const siteUrl = 'https://seanbecker.me';
+  const internalOgImageTitle = ogImageTitle || title || 'Sean Becker';
 
   // Generate dynamic OG image URL if no custom image is provided
   const ogImagePath =
     image ||
     `/api/og?title=${encodeURIComponent(
-      title,
+      internalOgImageTitle,
     )}&description=${encodeURIComponent(description || '')}`;
 
   // Ensure absolute URL for OG image
@@ -24,19 +26,19 @@ export default function SEO({ title, description, image, url }) {
       {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={pageUrl} />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={internalOgImageTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
+      <meta property="og:image:alt" content={internalOgImageTitle} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={internalOgImageTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:image:alt" content={title} />
+      <meta name="twitter:image:alt" content={internalOgImageTitle} />
 
       <meta name="robots" content="index, follow" />
     </Head>
