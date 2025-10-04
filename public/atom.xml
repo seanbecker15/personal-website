@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2025-10-04T17:18:42.153Z</updated>
+    <updated>2025-10-04T17:34:01.082Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>Copyright 2025 Sean Becker</rights>
     <entry>
         <title type="html"><![CDATA[About Me]]></title>
-        <id>https://seanbecker.me/posts/about-me</id>
-        <link href="https://seanbecker.me/posts/about-me"/>
+        <id>https://seanbecker.me/blog/about-me</id>
+        <link href="https://seanbecker.me/blog/about-me"/>
         <updated>2023-12-03T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[Just a few snippets of information to get to know me.]]></summary>
         <content type="html"><![CDATA[
@@ -28,8 +28,8 @@ Go back [home](/).
     </entry>
     <entry>
         <title type="html"><![CDATA[Past Projects]]></title>
-        <id>https://seanbecker.me/posts/past-projects</id>
-        <link href="https://seanbecker.me/posts/past-projects"/>
+        <id>https://seanbecker.me/blog/past-projects</id>
+        <link href="https://seanbecker.me/blog/past-projects"/>
         <updated>2023-12-03T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[This is a list of some of the projects I've worked on in the past.]]></summary>
         <content type="html"><![CDATA[
@@ -40,8 +40,8 @@ Go back [home](/).
     </entry>
     <entry>
         <title type="html"><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
-        <id>https://seanbecker.me/posts/chatgpt-text-completion</id>
-        <link href="https://seanbecker.me/posts/chatgpt-text-completion"/>
+        <id>https://seanbecker.me/blog/chatgpt-text-completion</id>
+        <link href="https://seanbecker.me/blog/chatgpt-text-completion"/>
         <updated>2023-12-04T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
         <content type="html"><![CDATA[
@@ -227,8 +227,8 @@ That's it! You should now have a working chatbot that can complete sentences in 
     </entry>
     <entry>
         <title type="html"><![CDATA[LG TV Wake on LAN]]></title>
-        <id>https://seanbecker.me/posts/lg-wake-on-lan</id>
-        <link href="https://seanbecker.me/posts/lg-wake-on-lan"/>
+        <id>https://seanbecker.me/blog/lg-wake-on-lan</id>
+        <link href="https://seanbecker.me/blog/lg-wake-on-lan"/>
         <updated>2024-06-21T05:00:00.000Z</updated>
         <summary type="html"><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></summary>
         <content type="html"><![CDATA[
@@ -256,8 +256,8 @@ You can find the javascript code [here](https://gist.github.com/seanbecker15/456
     </entry>
     <entry>
         <title type="html"><![CDATA[Professional Experience]]></title>
-        <id>https://seanbecker.me/posts/professional-experience</id>
-        <link href="https://seanbecker.me/posts/professional-experience"/>
+        <id>https://seanbecker.me/blog/professional-experience</id>
+        <link href="https://seanbecker.me/blog/professional-experience"/>
         <updated>2024-09-14T05:00:00.000Z</updated>
         <summary type="html"><![CDATA[A brief summary of my professional experience.]]></summary>
         <content type="html"><![CDATA[
@@ -287,8 +287,8 @@ Go back [home](/).
     </entry>
     <entry>
         <title type="html"><![CDATA[Japan Trip Itinerary]]></title>
-        <id>https://seanbecker.me/posts/japan-trip</id>
-        <link href="https://seanbecker.me/posts/japan-trip"/>
+        <id>https://seanbecker.me/blog/japan-trip</id>
+        <link href="https://seanbecker.me/blog/japan-trip"/>
         <updated>2025-04-20T05:00:00.000Z</updated>
         <summary type="html"><![CDATA[May 10 – May 24, 2025]]></summary>
         <content type="html"><![CDATA[
@@ -518,12 +518,12 @@ _Optional_
     </entry>
     <entry>
         <title type="html"><![CDATA[Claiming My Own AT Protocol Handle (at://seanbecker.me)]]></title>
-        <id>https://seanbecker.me/posts/at-proto</id>
-        <link href="https://seanbecker.me/posts/at-proto"/>
+        <id>https://seanbecker.me/blog/at-proto</id>
+        <link href="https://seanbecker.me/blog/at-proto"/>
         <updated>2025-10-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[How I connected my Bluesky account to my own domain using the AT Protocol.]]></summary>
         <content type="html"><![CDATA[
-After reading [Dan Abramov’s post](https://overreacted.io) about the AT Protocol, I became curious about how identity works on Bluesky. Using [atproto-browser.vercel.app](https://atproto-browser.vercel.app/), I realized how simple it is to connect your own domain to your account. My profile now lives at **at://seanbecker.me**.
+After reading [Dan Abramov’s post](https://overreacted.io/where-its-at/) about the AT Protocol, I became curious about how identity works on Bluesky. Using [atproto-browser.vercel.app](https://atproto-browser.vercel.app/), I realized how simple it is to connect your own domain to your account. My profile now lives at **at://seanbecker.me**.
 
 ## Steps
 
@@ -556,9 +556,9 @@ Make sure there are no extra spaces or newlines.
 
 In the Bluesky app or on the web:
 
-* Go to **Settings → Change handle**
-* Select **I have my own domain**
-* Enter `seanbecker.me`
+- Go to **Settings → Change handle**
+- Select **I have my own domain**
+- Enter `seanbecker.me`
 
 Bluesky will check the `.well-known` file and update your handle once verified.
 

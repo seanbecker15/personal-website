@@ -6,7 +6,7 @@ import rehypePrism from '@mapbox/rehype-prism';
 import remarkGfm from 'remark-gfm';
 import { Feed } from 'feed';
 
-export const POSTS_PATH = path.join(process.cwd(), 'posts');
+export const POSTS_PATH = path.join(process.cwd(), 'blog');
 export const PUBLIC_PATH = path.join(process.cwd(), 'public');
 
 // postFilePaths is the list of all mdx files inside the POSTS_PATH directory
@@ -126,7 +126,7 @@ export const generateRssFeed = () => {
   const allPosts = getPosts({ asc: true });
   allPosts.forEach((post) => {
     const { data, content } = post;
-    const postUrl = `${url}/posts/${makeSlug(post.filePath)}`;
+    const postUrl = `${url}/blog/${makeSlug(post.filePath)}`;
     feed.addItem({
       title: data.title,
       id: postUrl,
