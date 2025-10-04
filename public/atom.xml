@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2025-05-08T03:14:43.302Z</updated>
+    <updated>2025-10-04T17:18:42.153Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -297,6 +297,8 @@ Go back [home](/).
 - **Joey**: Arrive May 10, 2:45 PM NRT | Depart May 24, 4:30 PM NRT
 - **Sean**: Arrive May 10, 3:25 PM NRT | Depart May 24, 2:55 PM NRT
 
+---
+
 ## Saturday, May 10 — Tokyo
 
 **Booked**
@@ -310,6 +312,8 @@ _Optional_
 - Imperial Palace East Gardens — [Google Maps](https://www.google.com/maps/search/?api=1&query=Imperial+Palace+East+Gardens)
 - Tsukiji Outer Market — [Google Maps](https://www.google.com/maps/search/?api=1&query=Tsukiji+Outer+Market)
 
+---
+
 ## Sunday, May 11 — Tokyo
 
 **Booked**
@@ -322,6 +326,8 @@ _Optional_
 
 - [teamLab Borderless](https://borderless.teamlab.art)
 - [Shinjuku Night Walking Tour](https://www.tokyolocalized.com/tokyo-night-walking-tour-shinjuku-kabukicho)
+
+---
 
 ## Monday, May 12 — Tokyo → Kyoto
 
@@ -338,6 +344,8 @@ _Optional_
 - [Nijo Castle](https://www.city.kyoto.lg.jp/sankan/page/0000004002.html)
 - Nishiki Market — [Google Maps](https://www.google.com/maps/search/?api=1&query=Nishiki+Market)
 
+---
+
 ## Tuesday, May 13 — Kyoto
 
 **Booked**
@@ -350,6 +358,8 @@ _Optional_
 - [Samurai Museum](https://www.samuraimuseum.jp/en/)
 - Tea ceremony & kimono rental
 
+---
+
 ## Wednesday, May 14 — Kyoto
 
 **Booked**
@@ -360,6 +370,8 @@ _Optional_
 _Optional_
 
 - [Yamazaki Whisky Distillery](https://www.suntory.com/factory/yamazaki/)
+
+---
 
 ## Thursday, May 15 — Kyoto
 
@@ -375,6 +387,8 @@ _Optional_
 - Nishiki Market
 - Samurai Museum
 
+---
+
 ## Friday, May 16 — Hiroshima → Miyajima
 
 **Booked**
@@ -387,6 +401,8 @@ _Optional_
 
 - Hiroshima Castle — [Google Maps](https://www.google.com/maps/search/?api=1&query=Hiroshima+Castle)
 - Itsukushima Shrine (Miyajima) — [Google Maps](https://www.google.com/maps/search/?api=1&query=Itsukushima+Shrine)
+
+---
 
 ## Saturday, May 17 — Miyajima → Osaka
 
@@ -402,6 +418,8 @@ _Optional_
 - Tenjinbashi-suji arcade — [Google Maps](https://www.google.com/maps/search/?api=1&query=Tenjinbashi-suji)
 - Bunraku theatre — [Google Maps](https://www.google.com/maps/search/?api=1&query=Bunraku+Theatre+Osaka)
 
+---
+
 ## Sunday, May 18 — Nara day-trip
 
 **Booked**
@@ -413,6 +431,8 @@ _Optional_
 _Optional_
 
 - [Himeji Castle](https://www.google.com/maps/search/?api=1&query=Himeji+Castle)
+
+---
 
 ## Monday, May 19 — Osaka
 
@@ -427,6 +447,8 @@ _Optional_
 - [Kuromon Market](https://www.google.com/maps/search/?api=1&query=Kuromon+Market)
 - [Kōshien Stadium](https://www.google.com/maps/search/?api=1&query=Koshien+Stadium)
 
+---
+
 ## Tuesday, May 20 — Osaka → Kobe dinner
 
 **Booked**
@@ -437,6 +459,8 @@ _Optional_
 
 - [Kobe Harborland](https://www.google.com/maps/search/?api=1&query=Kobe+Harborland)
 - [Mount Rokko night view](https://www.google.com/maps/search/?api=1&query=Mount+Rokko)
+
+---
 
 ## Wednesday, May 21 — Osaka → Tokyo
 
@@ -449,6 +473,8 @@ _Optional_
 
 - Golden Gai bar hop — [Google Maps](https://www.google.com/maps/search/?api=1&query=Golden+Gai+Shinjuku)
 - VR arcade
+
+---
 
 ## Thursday, May 22 — Tokyo
 
@@ -463,6 +489,8 @@ _Optional_
 - [Takeshita Street, Harajuku](https://www.google.com/maps/search/?api=1&query=Takeshita+Street)
 - Omotesando cafés
 
+---
+
 ## Friday, May 23 — Tokyo
 
 **Booked**
@@ -475,6 +503,8 @@ _Optional_
 - Tsukiji Outer Market
 - Whisky bar crawl (e.g. Bar High Five)
 
+---
+
 ## Saturday, May 24 — Departure
 
 **Booked**
@@ -483,14 +513,60 @@ _Optional_
 
 _Optional_
 
-- Last-minute shopping or quick shrine visit
+- Last-minute shopping
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claiming My Own AT Protocol Handle (at://seanbecker.me)]]></title>
+        <id>https://seanbecker.me/posts/at-proto</id>
+        <link href="https://seanbecker.me/posts/at-proto"/>
+        <updated>2025-10-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How I connected my Bluesky account to my own domain using the AT Protocol.]]></summary>
+        <content type="html"><![CDATA[
+After reading [Dan Abramov’s post](https://overreacted.io) about the AT Protocol, I became curious about how identity works on Bluesky. Using [atproto-browser.vercel.app](https://atproto-browser.vercel.app/), I realized how simple it is to connect your own domain to your account. My profile now lives at **at://seanbecker.me**.
 
-### Important Info
+## Steps
 
-- **Visa**: U.S. citizens don’t need a visa for stays up to 90 days
-- Embassy details: https://jp.usembassy.gov/services/welcomebacktojapan/
+### 1. Find your DID
 
-Go back [home](/).
+Go to [https://atproto-browser.vercel.app/](https://atproto-browser.vercel.app/) and look up your existing Bluesky handle, in my case `seanbex.bsky.social`.
+My DID is:
+
+```
+did:plc:p2epzw3sltq7tdsg7sn7qenr
+```
+
+### 2. Add the `.well-known` verification file
+
+On your website, create a file at:
+
+```
+https://seanbecker.me/.well-known/atproto-did
+```
+
+The file should contain only your DID:
+
+```
+did:plc:p2epzw3sltq7tdsg7sn7qenr
+```
+
+Make sure there are no extra spaces or newlines.
+
+### 3. Update your handle in Bluesky
+
+In the Bluesky app or on the web:
+
+* Go to **Settings → Change handle**
+* Select **I have my own domain**
+* Enter `seanbecker.me`
+
+Bluesky will check the `.well-known` file and update your handle once verified.
+
+## Closing thoughts
+
+The AT Protocol makes it possible to manage your online identity under your own domain, independent of any specific platform. It’s a small change that makes the web feel a little more open again.
+
+Thanks to [Dan Abramov](https://overreacted.io) for the inspiration to explore this.
 ]]></content>
     </entry>
 </feed>
