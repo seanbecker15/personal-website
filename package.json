@@ -1,7 +1,7 @@
 {
   "name": "personal-website",
-  "version": "22",
-  "versionDate": "10/4/2025 1:05:17 PM",
+  "version": "23",
+  "versionDate": "10/4/2025 1:07:44 PM",
   "description": "My personal website built with Next.js and TailwindCSS",
   "author": "Sean Becker",
   "homepage": "https://seanbecker.me",
