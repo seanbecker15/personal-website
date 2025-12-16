@@ -4,7 +4,7 @@
         <title>Sean Becker | Feed</title>
         <link>https://seanbecker.me</link>
         <description>Technology and Engineering Blog</description>
-        <lastBuildDate>Sat, 04 Oct 2025 17:49:18 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Dec 2025 05:58:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -570,6 +570,175 @@ Bluesky will check the `.well-known` file and update your handle once verified.
 The AT Protocol makes it possible to manage your online identity under your own domain, independent of any specific platform. It’s a small change that makes the web feel a little more open again.
 
 Thanks to [Dan Abramov](https://overreacted.io) for the inspiration to explore this.
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Keeping a 20-Year Fantasy Football League Alive]]></title>
+            <link>https://seanbecker.me/blog/keeping-fantasy-alive</link>
+            <guid>https://seanbecker.me/blog/keeping-fantasy-alive</guid>
+            <pubDate>Mon, 15 Dec 2025 06:00:00 GMT</pubDate>
+            <description><![CDATA[How a small UI change broke a long-standing workflow and how automation fixed it without forcing anyone to change behavior.]]></description>
+            <content:encoded><![CDATA[
+Source code found on [GitHub](https://github.com/seanbecker15/cbs-fantasy-tooling).
+
+In 2020, CBS Sports changed their UI and broke a workflow my family had relied on for years.
+
+Nothing dramatic happened at once. The site still worked. Picks still showed up. But a small detail changed under the hood. HTML tables were replaced with deeply nested divs, and copy and paste stopped behaving the way it always had.
+
+What used to take about 5 to 10 minutes each week suddenly took close to an hour. Every Tuesday. For a fantasy football league that had already been running for nearly two decades, that friction mattered more than it sounds.
+
+This repository exists for one reason: to keep a long-running league accurate, fair, and fun without forcing anyone to change how they participate.
+
+No new accounts.  
+No new platform.  
+No retraining required.
+
+---
+
+## A League With History
+
+Our league started in 2004. At first it was fully manual. Picks were written down and scores were tracked by hand. Eventually it moved to CBS Sports, but the league never really fit the default Pick’em mold.
+
+Over time we added custom rules, weekly bonuses, and manual verification steps. Those rules became part of the league’s identity. They also made scoring more complicated than what CBS supported out of the box.
+
+For years, that gap was handled with spreadsheets and process. It worked well enough until it didn’t.
+
+---
+
+## What Kind of League This Is
+
+This is a confidence pool.
+
+At a high level:
+
+- Each week, participants pick the winner of every NFL game
+- Each pick is assigned a unique confidence value
+- Correct picks earn points equal to that confidence
+- Incorrect picks earn zero
+
+The strategy is not just about picking winners. It is about deciding where to place confidence relative to your other picks.
+
+On top of that, we have a couple of extra rules that materially affect standings:
+
+- **Most Wins Bonus**  
+  The participant with the most correct picks in a week gets 5 bonus points
+
+- **Most Points Bonus**  
+  The participant with the highest total confidence points gets 10 bonus points  
+  Ties are broken using the Monday Night Football total score
+
+These bonuses are simple to explain but annoying to calculate, especially when you are doing it by hand every week.
+
+---
+
+## Why We Didn’t Switch Platforms
+
+From a technical perspective, switching platforms or building something custom would have been easier.
+
+From a practical perspective, it would have killed the league.
+
+This is a group of family and family friends. Some people have been participating for decades. Asking everyone to create new accounts, learn a new UI, and change habits they have had for years would have created a lot of friction.
+
+CBS Sports already hosts the league and it works well enough for picks. The goal was never to replace it. The goal was to work around its limitations.
+
+CBS stays the system of record.
+
+---
+
+## The Spreadsheet Workflow
+
+For a long time, my father handled scoring using an Excel spreadsheet with carefully built formulas. It supported:
+
+- confidence scoring
+- weekly bonuses
+- tie breakers
+- audits before results were finalized and emailed out
+
+The weekly flow looked like this:
+
+1. Copy results from CBS Sports
+2. Paste them into Excel
+3. Verify the math
+4. Send out standings
+
+From roughly 2010 through 2020, this took very little time. The process was stable and predictable.
+
+After the CBS UI change, it wasn’t. Data pasted into the wrong columns. Rows would shift. Sometimes values were just missing. The same task now took close to an hour and required way more manual cleanup.
+
+That was not sustainable.
+
+---
+
+## The First Fix
+
+The first version of this project was intentionally narrow in scope.
+
+I built a scraper that pulled league results directly from CBS Sports, normalized the data, and fed it back into the existing spreadsheet.
+
+The spreadsheet stayed on purpose.
+
+My father is an auditor by trade. Being able to review and spot check numbers before publishing results is non negotiable. He also genuinely enjoys that part of the process. The goal was not to replace him. It was to remove the brittle steps that had started breaking.
+
+Automation supported the workflow instead of taking it over.
+
+That scraper has now been running weekly for three seasons and has been boring in the best possible way.
+
+---
+
+## Why the Project Grew
+
+Once reliable data ingestion existed, it was hard not to keep going.
+
+With clean data available, new ideas became possible:
+
+- combining historical league results with Vegas odds
+- experimenting with different confidence allocation strategies
+- building charts just to see what patterns show up
+- creating APIs for live leaderboards and custom UIs
+
+At that point, the project stopped being just a scraper. It turned into a place to experiment with automation and analysis around something we already cared about.
+
+CBS Sports still stays the source of truth.
+
+---
+
+## What This Repository Does
+
+At a high level, this project:
+
+- ingests NFL and league data from multiple sources
+- normalizes and analyzes that data
+- feeds results into emails, charts, databases, and real time views
+
+All without requiring league members to change platforms or behavior.
+
+---
+
+## What Comes Next
+
+This post focused on why the project exists.
+
+Future posts will dig into:
+
+- how a broken manual workflow was automated without disrupting people
+- how league history and Vegas odds can be combined to experiment with weekly picks
+- how the same data pipeline powers charts, APIs, and live standings
+
+Everything builds on the same idea: automate the fragile parts and keep humans in the loop where it matters.
+
+---
+
+## Thanks for Reading
+
+This started as a small fix to keep a long running league operational and slowly grew into a place to experiment with data, automation, and analysis.
+
+If you want to talk through any of the specifics, scoring rules, ingestion details, or design tradeoffs, you can reach me at:
+
+- GitHub: https://github.com/seanbecker15
+- X: https://x.com/theseanbecker
+- Email: sean.becker15@gmail.com
+
+More detailed posts will follow as each part of the system is explored in depth.
 ]]></content:encoded>
         </item>
     </channel>
