@@ -23,7 +23,10 @@ export default function Layout({ children }) {
       document.documentElement.classList.add('dark');
     } else if (lightMode) {
       document.documentElement.classList.remove('dark');
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
     }
+
     return;
   };
 
@@ -31,12 +34,13 @@ export default function Layout({ children }) {
     var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     darkQuery.onchange = (e) => {
+      // User has set a preference, don't override it
+      if (localStorage.getItem('theme')) return;
+
       if (e.matches) {
         document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
       } else {
         document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
       }
     };
   };
