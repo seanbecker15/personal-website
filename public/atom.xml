@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://seanbecker.me</id>
     <title>Sean Becker | Feed</title>
-    <updated>2026-02-08T23:31:15.165Z</updated>
+    <updated>2026-06-13T19:20:42.139Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://seanbecker.me"/>
     <link rel="self" href="https://seanbecker.me/atom.xml"/>
@@ -14,7 +14,7 @@
         <title type="html"><![CDATA[About Me]]></title>
         <id>https://seanbecker.me/blog/about-me</id>
         <link href="https://seanbecker.me/blog/about-me"/>
-        <updated>2023-12-03T06:00:00.000Z</updated>
+        <updated>2023-12-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Just a few snippets of information to get to know me.]]></summary>
         <content type="html"><![CDATA[
 - I grew up in Vernon Hills, IL
@@ -30,7 +30,7 @@ Go back [home](/).
         <title type="html"><![CDATA[Past Projects]]></title>
         <id>https://seanbecker.me/blog/past-projects</id>
         <link href="https://seanbecker.me/blog/past-projects"/>
-        <updated>2023-12-03T06:00:00.000Z</updated>
+        <updated>2023-12-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[This is a list of some of the projects I've worked on in the past.]]></summary>
         <content type="html"><![CDATA[
 <ProjectList filter={({ active }) => !active} />
@@ -42,7 +42,7 @@ Go back [home](/).
         <title type="html"><![CDATA[OpenAI Series: Chat-GPT Style Completion Using SSE Streaming API]]></title>
         <id>https://seanbecker.me/blog/chatgpt-text-completion</id>
         <link href="https://seanbecker.me/blog/chatgpt-text-completion"/>
-        <updated>2023-12-04T06:00:00.000Z</updated>
+        <updated>2023-12-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Use the OpenAI SSE streaming API to make a chatbot that can complete sentences just like ChatGPT.]]></summary>
         <content type="html"><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/49a20ef17e77682d7907f5eba8fd507b).
@@ -229,7 +229,7 @@ That's it! You should now have a working chatbot that can complete sentences in 
         <title type="html"><![CDATA[LG TV Wake on LAN]]></title>
         <id>https://seanbecker.me/blog/lg-wake-on-lan</id>
         <link href="https://seanbecker.me/blog/lg-wake-on-lan"/>
-        <updated>2024-06-21T05:00:00.000Z</updated>
+        <updated>2024-06-21T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[NodeJS script to wake LG (WebOS) TV over LAN]]></summary>
         <content type="html"><![CDATA[
 Just looking for code? You can find that [here](https://gist.github.com/seanbecker15/456ddec169eb68aa7e48d38234bb5283).
@@ -258,7 +258,7 @@ You can find the javascript code [here](https://gist.github.com/seanbecker15/456
         <title type="html"><![CDATA[Professional Experience]]></title>
         <id>https://seanbecker.me/blog/professional-experience</id>
         <link href="https://seanbecker.me/blog/professional-experience"/>
-        <updated>2024-09-14T05:00:00.000Z</updated>
+        <updated>2024-09-14T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A brief summary of my professional experience.]]></summary>
         <content type="html"><![CDATA[
 ## FuboTV - Senior Software Engineer (2022 - Present)
@@ -289,7 +289,7 @@ Go back [home](/).
         <title type="html"><![CDATA[Japan Trip Itinerary]]></title>
         <id>https://seanbecker.me/blog/japan-trip</id>
         <link href="https://seanbecker.me/blog/japan-trip"/>
-        <updated>2025-04-20T05:00:00.000Z</updated>
+        <updated>2025-04-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[May 10 – May 24, 2025]]></summary>
         <content type="html"><![CDATA[
 ## Flights
@@ -573,7 +573,7 @@ Thanks to [Dan Abramov](https://overreacted.io) for the inspiration to explore t
         <title type="html"><![CDATA[Keeping a 20-Year Fantasy Football League Alive]]></title>
         <id>https://seanbecker.me/blog/keeping-fantasy-alive</id>
         <link href="https://seanbecker.me/blog/keeping-fantasy-alive"/>
-        <updated>2025-12-15T06:00:00.000Z</updated>
+        <updated>2025-12-15T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[How a small UI change broke a long-standing workflow and how automation fixed it without forcing anyone to change behavior.]]></summary>
         <content type="html"><![CDATA[
 Source code found on [GitHub](https://github.com/seanbecker15/cbs-fantasy-tooling).
@@ -742,12 +742,13 @@ More detailed posts will follow as each part of the system is explored in depth.
         <title type="html"><![CDATA[Rio Trip Itinerary]]></title>
         <id>https://seanbecker.me/blog/rio-trip</id>
         <link href="https://seanbecker.me/blog/rio-trip"/>
-        <updated>2026-02-08T06:00:00.000Z</updated>
+        <updated>2026-02-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Feb 10 – Feb 19, 2026]]></summary>
         <content type="html"><![CDATA[
 ## Flights
 
-- **Sean**: Arrive Feb 10, 8:15 AM ORD -> ATL -> RIO | Depart Feb 19, 9:30 PM RIO -> ATL -> ORD
+- **Sean Chicago to Rio**: Depart Feb 9, 2:10pm. Arrive Feb 10, 8:15am (ORD -> ATL -> RIO).
+- **Sean Rio to Chicago**: Depart Feb 19, 9:30pm. Arrive Feb 20, 8:30am (RIO -> ATL -> ORD).
 
 ## Accommodation
 
@@ -756,6 +757,7 @@ More detailed posts will follow as each part of the system is explored in depth.
 - Check in @ 3pm on Tuesday, 2/10
 
 ## Other notes
+
 - Erik's notion: [https://www.notion.so/Rio-Carnaval-2026-Homepage](https://www.notion.so/Rio-Carnaval-2026-Homepage-27b4964af572802cb854c206e450ed57)
 - Guys' Airbnb: [Avenida Nossa Senhora de Copacabana, 198 201](https://www.google.com/maps/place/Av.+Nossa+Sra.+de+Copacabana,+198+-+201+-+Copacabana,+Rio+de+Janeiro+-+RJ,+22020-001,+Brazil/@-22.9651068,-43.179705,17z/data=!3m1!4b1!4m5!3m4!1s0x9bd5550a82deb5:0x1d699e4466dd1fd1!8m2!3d-22.9651118!4d-43.1771301?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D)
 - Gals' Airbnb: [Av. Atlântica, 2440 - Copacabana](google.com/maps/place/Av.+Atlântica,+2440+-+Copacabana,+Rio+de+Janeiro+-+RJ,+22041-001,+Brazil/@-22.9665498,-43.1809603,16.37z/data=!4m6!3m5!1s0x9bd54557ccde0b:0x8acaa63907e9ce75!8m2!3d-22.9713186!4d-43.1847121!16s%2Fg%2F11j8sdh6v2?entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D)
@@ -770,6 +772,12 @@ More detailed posts will follow as each part of the system is explored in depth.
 
 _Optional_
 
+- Buy/load MetrôRio card (R$80+)
+- Walk Copacabana promenade; relax at Posto 5/6
+- Buy Carnaval supplies in Copacabana
+- Evening drinks at Sky Leme Rooftop
+- Dinner nearby
+
 ---
 
 ## Wednesday, Feb 11
@@ -778,6 +786,11 @@ _Optional_
 
 _Optional_
 
+- Christ the Redeemer (7km), early in the morning to avoid heat and crowds
+- Afternoon: Beach time (Copacabana or Ipanema)
+- Sunset: Arpoador Rock
+- Dinner: Ipanema
+
 ---
 
 ## Thursday, Feb 12
@@ -785,6 +798,18 @@ _Optional_
 **Booked**
 
 _Optional_
+
+- Morning: Sugarloaf cable car
+- Afternoon: Beach in Copacabana
+- Evening: Lapa via metro
+- Monobloco Ensaio (Fundição Progresso)
+  - Doors 8:00 PM · Arrive 7:30 PM
+  - Samba / MPB / funk · 3k–5k crowd
+  - Indoor, high-energy pre-Carnaval warm-up
+- Backup: Bloco Dus Impussivi
+  - Starts 6:00 PM in Centro
+  - Then samba clubs in Lapa
+  - Light night before Carnaval
 
 ---
 
@@ -798,6 +823,14 @@ _Optional_
   - App: Ingresse
 
 _Optional_
+
+- Travel to Santa Teresa late morning
+- Carmelitas
+  - 1:00 PM start · 15k–30k crowd
+  - Bohemian nun-costume kickoff
+  - Ends ~6–7 PM
+- Backup: 5:00 PM start in Lapa
+- Return to Copacabana, shower, dinner, rest before 10pm event
 
 ---
 
@@ -817,6 +850,14 @@ _Optional_
 
 _Optional_
 
+- Flamengo earling morning
+  - Amigos da Onça
+  - 7:00 AM start · 10k–20k crowd
+  - Ends ~11 AM
+- Backup: Blocobuster (Leme, walkable)
+- Backup: Cordão da Bola Preta (700k crowd)
+- Midday R&R before Sambadrome Camarote
+
 ---
 
 ## Sunday, Feb 15
@@ -825,13 +866,29 @@ _Optional_
 
 _Optional_
 
+- Recovery, maybe Bloco
+  - Chill: Banda do Lido (Copacabana walk)
+  - Medium: Simpatia é Quase Amor (Ipanema)
+  - Intense: Bangalafumenga (100k megabloco)
+- Evening — Mayan Warrior
+  - Dinner → Uber to Sugarloaf
+  - 9:00 PM – 6:00 AM mountaintop electronic event
+  - Sunrise over Guanabara Bay
+
 ---
 
 ## Monday, Feb 16
 
 **Booked**
 
+- Booze cruise: Must reach Marina da Glória by 1:30 PM
+
 _Optional_
+
+- Sargento Pimenta (Glória)
+  - 8:00 AM start · 80k crowd
+  - Beatles samba covers
+  - Walk directly to marina afterward
 
 ---
 
@@ -840,6 +897,12 @@ _Optional_
 **Booked**
 
 _Optional_
+
+- Fervo da Lud
+  - 8:00 AM parade · 600k+ crowd
+- Orquestra Voadora (Afternoon)
+  - Brass-band fusion · 30k–50k crowd
+- Banda de Ipanema (evening)
 
 ---
 
