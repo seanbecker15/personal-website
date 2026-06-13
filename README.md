@@ -40,6 +40,8 @@ All posts are stored in `/blog` directory. To make a new post, create a new file
 
 Since the posts are written in `MDX` format you can pass props and components. That means you can use [React components](https://reactjs.org/docs/components-and-props.html) inside your posts to make them more interactive. Learn more about how to do so in the [MDX docs on content](https://mdxjs.com/docs/using-mdx/#components).
 
+Use `hidden: true` in a post's frontmatter to keep it out of the homepage list and generated RSS/Atom/JSON feeds.
+
 ## Testing
 
 ### Included Default Testing

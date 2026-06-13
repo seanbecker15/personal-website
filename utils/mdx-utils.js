@@ -25,7 +25,7 @@ export const sortPostsByDate = (posts, asc) => {
 
 export const makeSlug = (filePath) => filePath?.replace(/\.mdx?$/, '');
 
-export const getPosts = ({ asc = false } = { asc: false }) => {
+export const getPosts = ({ asc = false, includeHidden = false } = {}) => {
   let posts = postFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
     const { content, data } = matter(source);
@@ -36,6 +36,10 @@ export const getPosts = ({ asc = false } = { asc: false }) => {
       filePath,
     };
   });
+
+  if (!includeHidden) {
+    posts = posts.filter((post) => !post.data.hidden);
+  }
 
   posts = sortPostsByDate(posts, asc);
 
