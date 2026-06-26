@@ -1,0 +1,105 @@
+---
+title: 'The Secret About window.location.reload'
+date: '2026-06-26'
+description: 'TIL that window.location.reload does not fire immediately.'
+author: 'Sean Becker'
+tags: ['frontend', 'browser', 'MDN']
+---
+
+# Quick Quiz: What Does This Code Do?
+
+Four small snippets below. Each one is the kind of thing you'd skim past in a code review and nod along to. For each, the question is the same: **trace it in your head and predict what happens.** Make an actual guess before reading on. The interesting cases are the ones where your prediction and the runtime disagree.
+
+## 1. Saving a draft
+
+```js
+async function checkDraftOutdated() {
+  if (await serverHasNewerVersion()) {
+    location.reload();
+  }
+}
+
+async function saveDraft() {
+  await checkDraftOutdated();
+  await publishLocalDraft();
+}
+```
+
+**When the server has a newer version, does `publishLocalDraft()` run?**
+
+The author's reasoning: "If the server's copy is newer, `checkDraftOutdated()` reloads to pull it in. Calling `window.location.reload` reloads the page, so we never reach `publishLocalDraft()`. We only publish when our draft is actually the latest."
+
+But `location.reload()` doesn't halt anything. It only _schedules_ a navigation, then returns. `checkDraftOutdated()` resolves normally, the `await` in `saveDraft()` resumes, and `publishLocalDraft()` runs, even on the reload path. So the exact thing the guard was meant to prevent happens anyway: you overwrite the newer server version with your stale local draft.
+
+TL;DR: Think of `window.location.reload()` as `window.location.queueReload()`.
+
+## 2. A cache wrapper
+
+```js
+function getFromCache(url) {
+  return new Promise((resolve, reject) => {
+    const item = cache.get(url);
+    if (item) {
+      resolve(item);
+    }
+    console.error('could not find item:', url);
+    reject(new Error('not found'));
+  });
+}
+```
+
+**Does the `console.error` run, or does `resolve()` end the executor first?**
+
+Calling `resolve()` inside a Promise executor does **not** exit the executor. It marks the promise as fulfilled, but execution continues to the next statement synchronously. So the `console.error(...)` runs, right there, before the executor returns.
+
+`resolve` is just a function that settles the promise's state. It is not `return`. Any `.then()` callbacks are scheduled as microtasks for later, but the executor body itself runs straight through. If you meant to bail out after resolving, you need an explicit `return resolve(...)`.
+
+If you're now wondering which result takes precedence when calling both `resolve()` and `reject()`, question (3) clarifies.
+
+## 3. Validating input
+
+```js
+function validate(user) {
+  return new Promise((resolve, reject) => {
+    if (!user.email) reject(new Error('email required'));
+    resolve(user);
+  });
+}
+```
+
+**When `user.email` is missing, what does this promise settle to?**
+
+First, like `resolve()`, calling `reject()` doesn't stop the executor — so when `user.email` is missing, execution falls through and `resolve(user)` runs too. Because a promise is a "promise" (aka, the result can't change), and the promise is already rejected by then, the later `resolve` is a no-op.
+
+Second, `reject()` is **not** `throw`. It doesn't raise an exception at the call site; it just settles the promise as rejected, handled later by whoever attaches a `.catch()`.
+
+So technically this does work as designed... Though it's difficult to maintain because any side-effects introduced below `reject()` would run.
+
+## 4. Loading config
+
+```js
+function getConfig(raw) {
+  try {
+    if (!raw) throw new Error('missing config');
+    parseConfig(raw);
+  } catch {
+    return defaults;
+  }
+}
+```
+
+**When `raw` is empty, does `parseConfig(raw)` run?**
+
+Unlike `reject()`, `throw` does abort the current execution path. Control jumps to the nearest `catch`, so when `raw` is empty, `parseConfig(raw)` never runs. Execution leaves for the `catch` the instant the error is thrown.
+
+This is the genuine "stop here" behavior — the thing you may have _thought_ the other three did.
+
+## The takeaway
+
+Three of these calls look like stoppers and aren't:
+
+- **`location.reload()`** schedules a navigation, then returns. The next line runs.
+- **`resolve()` / `reject()`** settle a promise's state, then return. The next line runs.
+- **`throw`** is the only one that actually interrupts the current flow.
+
+`resolve`, `reject`, and `location.reload` are ordinary function calls. They hand work off to be done later and let execution fall through. If you want code to genuinely stop, you need `return`, `throw`, or to put the following code somewhere it won't be reached.
