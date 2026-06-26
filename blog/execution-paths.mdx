@@ -1,9 +1,9 @@
 ---
-title: 'The Secret About window.location.reload'
+title: 'JavaScript Exection Paths'
 date: '2026-06-26'
-description: 'TIL that window.location.reload does not fire immediately.'
+description: 'Quick overview of a few misleading code snippets in JavaScript.'
 author: 'Sean Becker'
-tags: ['frontend', 'browser', 'MDN']
+tags: ['frontend', 'browser', 'javascript']
 ---
 
 # Quick Quiz: What Does This Code Do?
@@ -69,7 +69,7 @@ function validate(user) {
 
 **When `user.email` is missing, what does this promise settle to?**
 
-First, like `resolve()`, calling `reject()` doesn't stop the executor — so when `user.email` is missing, execution falls through and `resolve(user)` runs too. Because a promise is a "promise" (aka, the result can't change), and the promise is already rejected by then, the later `resolve` is a no-op.
+First, like `resolve()`, calling `reject()` doesn't stop the executor. So when `user.email` is missing, execution falls through and `resolve(user)` runs too. Because a promise is a "promise" (aka, the result can't change), and the promise is already rejected by then, the later `resolve` is a no-op.
 
 Second, `reject()` is **not** `throw`. It doesn't raise an exception at the call site; it just settles the promise as rejected, handled later by whoever attaches a `.catch()`.
 
@@ -92,7 +92,7 @@ function getConfig(raw) {
 
 Unlike `reject()`, `throw` does abort the current execution path. Control jumps to the nearest `catch`, so when `raw` is empty, `parseConfig(raw)` never runs. Execution leaves for the `catch` the instant the error is thrown.
 
-This is the genuine "stop here" behavior — the thing you may have _thought_ the other three did.
+This is the genuine "stop here" behavior - the thing you may have _thought_ the other three did.
 
 ## The takeaway
 
